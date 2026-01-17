@@ -1,0 +1,303 @@
+<body>
+<header>
+  <div class="container nav">
+    <a class="brand" href="#top" aria-label="Peak Peptides home">
+      <div class="logo" aria-hidden="true"></div>
+      <div>
+        Peak Peptides
+        <div style="color:var(--muted);font-size:12px;font-weight:600;margin-top:2px;">Premium research-grade supply</div>
+      </div>
+    </a>
+
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#shop">Shop</a>
+      <a href="#quality">Quality</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="actions">
+      <a class="btn ghost" href="#shop">Browse</a>
+      <button class="btn" id="openCartBtn" aria-label="Open cart">
+        Cart <span class="badgeCount" id="cartCount">0</span>
+      </button>
+      <a class="btn primary" href="#shop">Shop now</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container heroGrid">
+      <div class="heroCard heroLeft">
+        <span class="pill"><span class="dot"></span> COAs for every lot • Fast shipping • Simple returns</span>
+        <h1>Peptides, but make it premium.</h1>
+        <p class="sub">
+          A clean, conversion-friendly storefront for <b>research peptides</b> with transparent lab documentation,
+          clear shipping expectations, and no sketchy vibes. (We love a non-chaotic checkout.)
+        </p>
+
+        <div class="heroCtas">
+          <a class="btn primary" href="#shop">Shop best sellers</a>
+          <button class="btn" id="openQualityBtn">See quality standards</button>
+        </div>
+
+        <div class="trustRow" aria-label="Trust badges">
+          <div class="trustItem"><span class="trustIcon">✓</span>Third-party COAs</div>
+          <div class="trustItem"><span class="trustIcon">⏱</span>Same/next-day processing</div>
+          <div class="trustItem"><span class="trustIcon">📦</span>Discrete packaging</div>
+          <div class="trustItem"><span class="trustIcon">💬</span>Human support</div>
+        </div>
+      </div>
+
+      <div class="heroCard heroRight">
+        <div class="stat">
+          <div class="statTop">
+            <div>
+              <div class="statLabel">Quality transparency</div>
+              <div class="statValue">COA-first catalog</div>
+            </div>
+            <span class="pill">Updated weekly</span>
+          </div>
+          <div class="bar" aria-hidden="true"><div style="--w:84%"></div></div>
+          <div class="note" style="margin-top:10px;">
+            Every product page links to a corresponding lot document so customers can verify what they’re buying.
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="statTop">
+            <div>
+              <div class="statLabel">Shipping</div>
+              <div class="statValue">1–3 business days</div>
+            </div>
+            <span class="pill">U.S. domestic</span>
+          </div>
+          <div class="bar" aria-hidden="true"><div style="--w:72%"></div></div>
+          <div class="note" style="margin-top:10px;">
+            Typical transit window. You can customize carriers, thresholds, and delivery messaging.
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="statTop">
+            <div>
+              <div class="statLabel">Customer confidence</div>
+              <div class="statValue">Clear policies</div>
+            </div>
+            <span class="pill">No surprises</span>
+          </div>
+          <div class="bar" aria-hidden="true"><div style="--w:76%"></div></div>
+          <div class="note" style="margin-top:10px;">
+            Transparent pricing, shipping, and returns reduces chargebacks and support tickets.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shop">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Shop research peptides</h2>
+          <p class="sectionSub">Starter catalog below. Swap names/prices/strengths and link each to a COA PDF when ready.</p>
+        </div>
+        <span class="pill">💳 Apple Pay-ready (with a real checkout provider)</span>
+      </div>
+
+      <div class="grid" id="productGrid">
+        <!-- Product cards injected by JS -->
+      </div>
+
+      <div style="margin-top:14px;" class="small">
+        *For research and laboratory use only. Not for human consumption. Always comply with local laws and platform policies.
+      </div>
+    </div>
+  </section>
+
+  <section id="quality">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Quality, but explain it like a normal person</h2>
+          <p class="sectionSub">This section is written to build trust without making medical claims.</p>
+        </div>
+      </div>
+
+      <div class="split">
+        <div class="panel">
+          <h3>What you publish (aka the “no secrets” list)</h3>
+          <div class="list">
+            <div class="li"><span class="check">✓</span><div><b>COA per lot:</b> HPLC/LC-MS results, purity %, and batch identifiers.</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Storage guidance:</b> temperature ranges + best practices for stability.</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Packaging details:</b> sterile/aseptic notes where applicable.</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Shipping/returns:</b> timelines, thresholds, and “what happens if…” scenarios.</div></div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>How you keep it compliant</h3>
+          <div class="list">
+            <div class="li"><span class="check">✓</span><div><b>No health claims:</b> no “treat/cure/diagnose,” no dosage guidance.</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Clear positioning:</b> “research use only” everywhere it matters.</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Age gate:</b> optional toggle (18+/21+ depending on your policy).</div></div>
+            <div class="li"><span class="check">✓</span><div><b>Payment sanity:</b> use a processor aligned with your catalog + policies.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>Real-world feedback</h2>
+          <p class="sectionSub">Example review layout. Replace with actual testimonials you’re allowed to use.</p>
+        </div>
+      </div>
+
+      <div class="reviews">
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>“COA links were the easiest I’ve seen. Checkout was clean and shipping updates were super clear.”</p>
+          <div class="who">Morgan L.</div>
+          <div class="meta">Verified order • 2 weeks ago</div>
+        </div>
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>“Packaging was discreet, lot info matched, and support replied like… immediately. Rare.”</p>
+          <div class="who">Sam R.</div>
+          <div class="meta">Verified order • 1 month ago</div>
+        </div>
+        <div class="review">
+          <div class="stars">★★★★★</div>
+          <p>“Finally a site that doesn’t feel sketchy. Policies are actually readable.”</p>
+          <div class="who">Alex P.</div>
+          <div class="meta">Verified order • 6 weeks ago</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <div class="sectionHead">
+        <div>
+          <h2>FAQ</h2>
+          <p class="sectionSub">Short + direct answers. Your support inbox will thank you.</p>
+        </div>
+      </div>
+
+      <div style="display:grid; gap:10px;">
+        <details>
+          <summary>Are these products for human use?</summary>
+          <p>No. All items sold here are intended for research and laboratory use only and are not for human consumption.</p>
+        </details>
+        <details>
+          <summary>Where do I find a COA?</summary>
+          <p>Each product includes a “View COA” link. Add your lot PDFs/URLs in the product list in the code.</p>
+        </details>
+        <details>
+          <summary>What’s the shipping time?</summary>
+          <p>Orders typically process same or next business day. Transit is usually 1–3 business days domestically.</p>
+        </details>
+        <details>
+          <summary>Returns?</summary>
+          <p>Because of the nature of these products, returns may be limited. Spell out your policy clearly and keep it consistent.</p>
+        </details>
+      </div>
+
+      <div class="panel" style="margin-top:14px;">
+        <h3>Get restock alerts</h3>
+        <div class="note">Drop your email. We’ll only hit you when something is back (no newsletter spam arc).</div>
+        <div class="emailRow">
+          <input id="emailInput" type="email" placeholder="you@email.com" />
+          <button class="btn primary" id="emailBtn">Notify me</button>
+        </div>
+        <div class="small" id="emailMsg" style="margin-top:8px;"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footGrid">
+      <div>
+        <div class="brand" style="gap:12px;">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            Peak Peptides
+            <div style="color:var(--muted);font-size:12px;font-weight:600;margin-top:2px;">Premium research-grade supply</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tiny">
+        <b>Compliance note:</b> This template avoids medical claims and dosage instructions. Keep it that way unless your legal/compliance team says otherwise.
+      </div>
+    </div>
+
+    <div class="legalBox">
+      <div class="tiny">
+        <b>Disclaimer:</b> Products on this site are intended for <b>research and laboratory use only</b>. Not for human consumption.
+        This website does not provide medical advice. By purchasing, you agree to the Terms, Shipping, and Returns policies.
+      </div>
+    </div>
+
+    <div style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
+      <div>© <span id="year"></span> Peak Peptides</div>
+      <div class="fineprint">Built as a one-page demo. Connect Stripe/Shopify/etc. for real payments.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Cart Drawer -->
+<div class="drawerOverlay" id="drawerOverlay" role="dialog" aria-modal="true" aria-label="Cart drawer">
+  <div class="drawer">
+    <div class="drawerTop">
+      <h3>Your cart</h3>
+      <button class="btn" id="closeCartBtn">Close</button>
+    </div>
+
+    <div class="cartItems" id="cartItems"></div>
+
+    <div class="totals">
+      <div class="promoRow">
+        <input type="text" id="promoCode" placeholder="Promo code (try PEAK10)" />
+        <button class="btn" id="applyPromoBtn">Apply</button>
+      </div>
+
+      <div class="row"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+      <div class="row"><span>Discount</span><strong id="discount">-$0.00</strong></div>
+      <div class="row"><span>Estimated shipping</span><strong id="ship">$6.95</strong></div>
+      <div class="row" style="font-size:14px;"><span>Total</span><strong id="total">$0.00</strong></div>
+
+      <button class="btn primary" id="checkoutBtn">Checkout</button>
+      <div class="fineprint">
+        Demo checkout. For real payments: connect to Shopify/Stripe + ensure your catalog/policies match processor rules.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Checkout Modal -->
+<div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Checkout modal">
+  <div class="modal">
+    <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
+      <h3>Checkout (demo)</h3>
+      <button class="btn" id="closeModalBtn">Close</button>
+    </div>
+    <p>
+      This template runs on static HTML. To accept payments, pick a platform:
+      <b>Shopify</b> (fastest), <b>Stripe Checkout</b> (custom), or <b>WooCommerce</b> (WordPress).
+    </p>
+    <div class="panel" style="padding:14px; border-radius:16px;">
+      <div class="row"><span>Items</span><strong id="modalItems">0</strong></div>
+      <div class="row"><span>Total</span><strong id="modalTotal">$0.00</strong></div>
+    </div>
+    <button class="btn primary" onclick="alert('Hook this to your real checkout URL.')">Go to payment</button>
+  </div>
+</div>
