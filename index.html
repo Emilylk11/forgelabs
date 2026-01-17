@@ -3,1002 +3,327 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Peak Peptides — Premium Research Peptides</title>
-  <meta name="description" content="Premium, lab-tested research peptides. Clear COAs, fast shipping, and straightforward pricing." />
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --panel:#0f1620;
-      --card:#111b26;
-      --muted:#9fb0c3;
-      --text:#eaf2fb;
-      --soft:#1b2a3a;
-      --brand:#7c5cff;
-      --brand2:#36d399;
-      --warn:#ffb020;
-      --danger:#ff5c7a;
-      --border: rgba(255,255,255,.09);
-      --shadow: 0 14px 40px rgba(0,0,0,.35);
-      --radius: 20px;
-      --radius2: 14px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background:
-        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.35), transparent 55%),
-        radial-gradient(900px 500px at 90% 10%, rgba(54,211,153,.25), transparent 55%),
-        linear-gradient(180deg, var(--bg), #070a0e 70%);
-      color: var(--text);
-      overflow-x:hidden;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{width:min(1120px, 92vw); margin:0 auto}
-    .pill{
-      display:inline-flex; gap:10px; align-items:center;
-      padding:8px 12px; border:1px solid var(--border); border-radius:999px;
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-size:13px;
-    }
-    .dot{width:8px;height:8px;border-radius:50%; background: var(--brand2); box-shadow:0 0 0 6px rgba(54,211,153,.12)}
-    header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(10px);
-      background: rgba(7,10,14,.55);
-      border-bottom:1px solid var(--border);
-    }
-    .nav{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0;
-      gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700; letter-spacing:.2px;
-    }
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background: linear-gradient(135deg, var(--brand), rgba(124,92,255,.25));
-      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
-      border:1px solid rgba(255,255,255,.12);
-      position:relative;
-    }
-    .logo:after{
-      content:"";
-      position:absolute; inset:9px;
-      border-radius:10px;
-      background: linear-gradient(135deg, rgba(54,211,153,.95), rgba(54,211,153,.15));
-      opacity:.95;
-    }
-    .navlinks{display:flex; gap:18px; align-items:center}
-    .navlinks a{
-      color: var(--muted);
-      font-size:14px;
-      padding:8px 10px;
-      border-radius:12px;
-    }
-    .navlinks a:hover{background: rgba(255,255,255,.05); color: var(--text)}
-    .actions{display:flex; gap:10px; align-items:center}
-    .btn{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--text);
-      padding:10px 14px;
-      border-radius:14px;
-      font-weight:650;
-      cursor:pointer;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      display:inline-flex; gap:10px; align-items:center; justify-content:center;
-      user-select:none;
-    }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
-    .btn.primary{
-      background: linear-gradient(135deg, var(--brand), rgba(124,92,255,.6));
-      border-color: rgba(124,92,255,.55);
-      box-shadow: 0 18px 38px rgba(124,92,255,.18);
-    }
-    .btn.primary:hover{background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.55))}
-    .btn.ghost{background: transparent}
-    .badgeCount{
-      min-width:20px; height:20px; border-radius:999px;
-      padding:0 6px;
-      font-size:12px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background: rgba(54,211,153,.15);
-      border:1px solid rgba(54,211,153,.35);
-      color: var(--text);
-    }
-
-    /* Hero */
-    .hero{padding:64px 0 24px}
-    .heroGrid{
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    .heroCard{
-      background: rgba(255,255,255,.03);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .heroLeft{padding:34px}
-    h1{
-      margin:14px 0 12px;
-      font-size: clamp(34px, 4vw, 52px);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-    }
-    .sub{
-      color: var(--muted);
-      font-size: 16px;
-      line-height: 1.55;
-      max-width: 56ch;
-    }
-    .heroCtas{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
-    .trustRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top:18px;
-    }
-    .trustItem{
-      display:flex; gap:10px; align-items:center;
-      padding:10px 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    .trustIcon{
-      width:28px;height:28px;border-radius:12px;
-      display:inline-flex; align-items:center; justify-content:center;
-      background: rgba(124,92,255,.14);
-      border:1px solid rgba(124,92,255,.25);
-      color: var(--text);
-      font-weight:800;
-    }
-
-    .heroRight{
-      padding:18px;
-      display:grid; gap:12px;
-    }
-    .stat{
-      padding:16px;
-      border-radius: 18px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-    .statTop{display:flex; justify-content:space-between; align-items:center; gap:12px}
-    .statLabel{color: var(--muted); font-size:13px}
-    .statValue{font-weight:800; font-size:18px}
-    .bar{
-      height:10px; border-radius:999px;
-      background: rgba(255,255,255,.05);
-      border:1px solid var(--border);
-      overflow:hidden;
-      margin-top:10px;
-    }
-    .bar > div{
-      height:100%;
-      width: var(--w,60%);
-      background: linear-gradient(90deg, rgba(124,92,255,.9), rgba(54,211,153,.85));
-    }
-    .note{
-      color: var(--muted);
-      font-size:13px;
-      line-height:1.5;
-    }
-
-    /* Section */
-    section{padding:32px 0}
-    .sectionHead{
-      display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
-      margin-bottom:14px;
-    }
-    h2{
-      margin:0;
-      font-size: 26px;
-      letter-spacing: -0.02em;
-    }
-    .sectionSub{margin:0; color: var(--muted); font-size:14px; max-width:64ch}
-
-    /* Products */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-    }
-    .product{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      overflow:hidden;
-      box-shadow: 0 10px 28px rgba(0,0,0,.25);
-      display:flex; flex-direction:column;
-    }
-    .thumb{
-      height:190px;
-      background:
-        radial-gradient(240px 120px at 30% 30%, rgba(124,92,255,.35), transparent 60%),
-        radial-gradient(240px 120px at 70% 40%, rgba(54,211,153,.22), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      border-bottom:1px solid var(--border);
-      position:relative;
-    }
-    .thumbTag{
-      position:absolute; top:12px; left:12px;
-      padding:8px 10px;
-      border-radius: 999px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(7,10,14,.55);
-      color: var(--muted);
-      font-size:12px;
-    }
-    .thumbArt{
-      position:absolute; inset:0;
-      display:flex; align-items:center; justify-content:center;
-      font-weight:900;
-      letter-spacing:-0.03em;
-      font-size: 34px;
-      opacity:.95;
-    }
-    .pBody{padding:16px; display:grid; gap:10px}
-    .pTitle{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
-    .pTitle h3{margin:0; font-size:16px}
-    .price{font-weight:900}
-    .pDesc{margin:0; color: var(--muted); font-size:13px; line-height:1.55}
-    .chips{display:flex; flex-wrap:wrap; gap:8px}
-    .chip{
-      font-size:12px; color: var(--muted);
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-    .pActions{display:flex; gap:10px; align-items:center; margin-top:2px}
-    .qty{
-      display:flex; align-items:center; gap:8px;
-      padding:8px 10px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.02);
-    }
-    .qty button{
-      width:28px;height:28px;border-radius:12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      color: var(--text);
-      cursor:pointer;
-      font-weight:900;
-    }
-    .qty span{min-width:20px; text-align:center; font-weight:800}
-    .pActions .btn{flex:1}
-
-    /* Split */
-    .split{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:14px;
-    }
-    .panel{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:18px;
-      box-shadow: 0 10px 28px rgba(0,0,0,.22);
-    }
-    .panel h3{margin:0 0 10px; font-size:16px}
-    .list{display:grid; gap:10px}
-    .li{display:flex; gap:10px; align-items:flex-start; color: var(--muted); font-size:13px; line-height:1.55}
-    .li b{color: var(--text)}
-    .check{
-      width:22px;height:22px;border-radius:8px;
-      display:inline-flex; align-items:center; justify-content:center;
-      border:1px solid rgba(54,211,153,.35);
-      background: rgba(54,211,153,.12);
-      flex:0 0 auto;
-      margin-top:1px;
-    }
-
-    /* Reviews */
-    .reviews{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
-    .review{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: var(--radius);
-      padding:16px;
-    }
-    .stars{letter-spacing:2px}
-    .review p{margin:10px 0 0; color: var(--muted); font-size:13px; line-height:1.55}
-    .review .who{margin-top:12px; color: var(--text); font-weight:700; font-size:13px}
-    .review .meta{color: var(--muted); font-size:12px}
-
-    /* FAQ */
-    details{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:12px 14px;
-    }
-    details summary{
-      cursor:pointer;
-      font-weight:750;
-      color: var(--text);
-      outline:none;
-      list-style:none;
-    }
-    details summary::-webkit-details-marker{display:none}
-    details p{margin:10px 0 0; color: var(--muted); font-size:13px; line-height:1.6}
-
-    /* Email */
-    .emailRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    input[type="email"], input[type="text"]{
-      flex:1;
-      min-width: 220px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 14px;
-      padding:12px 14px;
-      color: var(--text);
-      outline:none;
-    }
-    input::placeholder{color: rgba(159,176,195,.7)}
-
-    /* Footer */
-    footer{padding:32px 0 46px; color: var(--muted); font-size:13px}
-    .footGrid{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
-    .tiny{font-size:12px; line-height:1.55; max-width: 80ch}
-    .legalBox{
-      margin-top:14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.02);
-      border-radius: 16px;
-      padding:12px 14px;
-    }
-
-    /* Cart Drawer */
-    .drawerOverlay{
-      position:fixed; inset:0; z-index:80;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(6px);
-      display:none;
-      align-items:stretch;
-      justify-content:flex-end;
-    }
-    .drawer{
-      width:min(420px, 92vw);
-      background: rgba(10,14,20,.92);
-      border-left:1px solid var(--border);
-      box-shadow: -30px 0 80px rgba(0,0,0,.5);
-      padding:16px;
-      display:flex; flex-direction:column;
-      gap:12px;
-    }
-    .drawerTop{display:flex; justify-content:space-between; align-items:center; gap:10px}
-    .drawerTop h3{margin:0; font-size:16px}
-    .cartItems{display:grid; gap:10px; overflow:auto; padding-right:6px; max-height: 48vh}
-    .cartItem{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-      border-radius: 16px;
-      padding:12px;
-      display:grid; gap:8px;
-    }
-    .ciRow{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
-    .ciName{font-weight:800; font-size:13px}
-    .ciMeta{color: var(--muted); font-size:12px}
-    .ciActions{display:flex; justify-content:space-between; gap:10px; align-items:center}
-    .linkBtn{
-      border:none; background:transparent; color: var(--muted);
-      cursor:pointer; padding:6px 8px; border-radius:12px;
-    }
-    .linkBtn:hover{background: rgba(255,255,255,.05); color: var(--text)}
-    .totals{
-      border-top:1px solid var(--border);
-      padding-top:12px;
-      display:grid; gap:10px;
-    }
-    .row{display:flex; justify-content:space-between; gap:10px; color: var(--muted); font-size:13px}
-    .row strong{color: var(--text)}
-    .promoRow{display:flex; gap:10px; flex-wrap:wrap}
-    .small{font-size:12px; color: var(--muted)}
-    .fineprint{font-size:11px; color: rgba(159,176,195,.8); line-height:1.5}
-
-    /* Modal */
-    .modalOverlay{
-      position:fixed; inset:0; z-index:90;
-      background: rgba(0,0,0,.6);
-      backdrop-filter: blur(6px);
-      display:none;
-      align-items:center; justify-content:center;
-      padding:16px;
-    }
-    .modal{
-      width:min(520px, 96vw);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: rgba(10,14,20,.92);
-      box-shadow: var(--shadow);
-      padding:18px;
-      display:grid; gap:12px;
-    }
-    .modal h3{margin:0; font-size:18px}
-    .modal p{margin:0; color: var(--muted); font-size:13px; line-height:1.55}
-
-    /* Responsive */
-    @media (max-width: 980px){
-      .heroGrid{grid-template-columns:1fr; }
-      .grid{grid-template-columns: 1fr; }
-      .split{grid-template-columns:1fr}
-      .reviews{grid-template-columns:1fr}
-      .navlinks{display:none}
-    }
-  </style>
+  <title>Forge Labs — Fitness-Focused Research Supply</title>
+  <meta name="description" content="Fitness-focused research supply with transparent policies and a streamlined kit that includes essentials." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
 </head>
-
 <body>
-<header>
-  <div class="container nav">
-    <a class="brand" href="#top" aria-label="Peak Peptides home">
-      <div class="logo" aria-hidden="true"></div>
-      <div>
-        Peak Peptides
-        <div style="color:var(--muted);font-size:12px;font-weight:600;margin-top:2px;">Premium research-grade supply</div>
+  <!-- Sticky Nav -->
+  <header class="site-header" id="top">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Forge Labs home">
+        <span class="logo" aria-hidden="true"></span>
+        <span class="brand-text">
+          <span class="brand-name">Forge Labs</span>
+          <span class="brand-sub">Fitness-focused research supply</span>
+        </span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#shop">Shop</a>
+        <a href="#different">Why us</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn ghost" href="#shop">Browse</a>
+        <a class="btn primary" href="#shop">Shop now</a>
       </div>
-    </a>
-
-    <nav class="navlinks" aria-label="Primary">
-      <a href="#shop">Shop</a>
-      <a href="#quality">Quality</a>
-      <a href="#reviews">Reviews</a>
-      <a href="#faq">FAQ</a>
-    </nav>
-
-    <div class="actions">
-      <a class="btn ghost" href="#shop">Browse</a>
-      <button class="btn" id="openCartBtn" aria-label="Open cart">
-        Cart <span class="badgeCount" id="cartCount">0</span>
-      </button>
-      <a class="btn primary" href="#shop">Shop now</a>
     </div>
-  </div>
-</header>
+  </header>
 
-<main id="top">
-  <section class="hero">
-    <div class="container heroGrid">
-      <div class="heroCard heroLeft">
-        <span class="pill"><span class="dot"></span> COAs for every lot • Fast shipping • Simple returns</span>
-        <h1>Peptides, but make it premium.</h1>
-        <p class="sub">
-          A clean, conversion-friendly storefront for <b>research peptides</b> with transparent lab documentation,
-          clear shipping expectations, and no sketchy vibes. (We love a non-chaotic checkout.)
-        </p>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-card hero-left">
+          <div class="pill"><span class="dot"></span> Clear policies • Fast processing • Discreet packaging</div>
 
-        <div class="heroCtas">
-          <a class="btn primary" href="#shop">Shop best sellers</a>
-          <button class="btn" id="openQualityBtn">See quality standards</button>
-        </div>
+          <h1>Built for people who train.</h1>
+          <p class="sub">
+            A clean storefront for <strong>research products</strong> with a streamlined kit that
+            <strong>includes essentials</strong>—less setup, less guesswork, more consistency.
+          </p>
 
-        <div class="trustRow" aria-label="Trust badges">
-          <div class="trustItem"><span class="trustIcon">✓</span>Third-party COAs</div>
-          <div class="trustItem"><span class="trustIcon">⏱</span>Same/next-day processing</div>
-          <div class="trustItem"><span class="trustIcon">📦</span>Discrete packaging</div>
-          <div class="trustItem"><span class="trustIcon">💬</span>Human support</div>
-        </div>
-      </div>
-
-      <div class="heroCard heroRight">
-        <div class="stat">
-          <div class="statTop">
-            <div>
-              <div class="statLabel">Quality transparency</div>
-              <div class="statValue">COA-first catalog</div>
-            </div>
-            <span class="pill">Updated weekly</span>
+          <div class="cta-row">
+            <a class="btn primary" href="#shop">Shop Reta Trutide</a>
+            <a class="btn" href="#different">What’s different</a>
           </div>
-          <div class="bar" aria-hidden="true"><div style="--w:84%"></div></div>
-          <div class="note" style="margin-top:10px;">
-            Every product page links to a corresponding lot document so customers can verify what they’re buying.
+
+          <div class="trust-row" aria-label="Trust badges">
+            <div class="trust-item"><span class="trust-ic">✓</span> Transparent policies</div>
+            <div class="trust-item"><span class="trust-ic">⏱</span> Same/next-day processing</div>
+            <div class="trust-item"><span class="trust-ic">📦</span> Discreet packaging</div>
+            <div class="trust-item"><span class="trust-ic">💬</span> Human support</div>
           </div>
         </div>
 
-        <div class="stat">
-          <div class="statTop">
-            <div>
-              <div class="statLabel">Shipping</div>
-              <div class="statValue">1–3 business days</div>
-            </div>
-            <span class="pill">U.S. domestic</span>
-          </div>
-          <div class="bar" aria-hidden="true"><div style="--w:72%"></div></div>
-          <div class="note" style="margin-top:10px;">
-            Typical transit window. You can customize carriers, thresholds, and delivery messaging.
-          </div>
-        </div>
-
-        <div class="stat">
-          <div class="statTop">
-            <div>
-              <div class="statLabel">Customer confidence</div>
-              <div class="statValue">Clear policies</div>
-            </div>
-            <span class="pill">No surprises</span>
-          </div>
-          <div class="bar" aria-hidden="true"><div style="--w:76%"></div></div>
-          <div class="note" style="margin-top:10px;">
-            Transparent pricing, shipping, and returns reduces chargebacks and support tickets.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="shop">
-    <div class="container">
-      <div class="sectionHead">
-        <div>
-          <h2>Shop research peptides</h2>
-          <p class="sectionSub">Starter catalog below. Swap names/prices/strengths and link each to a COA PDF when ready.</p>
-        </div>
-        <span class="pill">💳 Apple Pay-ready (with a real checkout provider)</span>
-      </div>
-
-      <div class="grid" id="productGrid">
-        <!-- Product cards injected by JS -->
-      </div>
-
-      <div style="margin-top:14px;" class="small">
-        *For research and laboratory use only. Not for human consumption. Always comply with local laws and platform policies.
-      </div>
-    </div>
-  </section>
-
-  <section id="quality">
-    <div class="container">
-      <div class="sectionHead">
-        <div>
-          <h2>Quality, but explain it like a normal person</h2>
-          <p class="sectionSub">This section is written to build trust without making medical claims.</p>
-        </div>
-      </div>
-
-      <div class="split">
-        <div class="panel">
-          <h3>What you publish (aka the “no secrets” list)</h3>
-          <div class="list">
-            <div class="li"><span class="check">✓</span><div><b>COA per lot:</b> HPLC/LC-MS results, purity %, and batch identifiers.</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Storage guidance:</b> temperature ranges + best practices for stability.</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Packaging details:</b> sterile/aseptic notes where applicable.</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Shipping/returns:</b> timelines, thresholds, and “what happens if…” scenarios.</div></div>
-          </div>
-        </div>
-
-        <div class="panel">
-          <h3>How you keep it compliant</h3>
-          <div class="list">
-            <div class="li"><span class="check">✓</span><div><b>No health claims:</b> no “treat/cure/diagnose,” no dosage guidance.</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Clear positioning:</b> “research use only” everywhere it matters.</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Age gate:</b> optional toggle (18+/21+ depending on your policy).</div></div>
-            <div class="li"><span class="check">✓</span><div><b>Payment sanity:</b> use a processor aligned with your catalog + policies.</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="reviews">
-    <div class="container">
-      <div class="sectionHead">
-        <div>
-          <h2>Real-world feedback</h2>
-          <p class="sectionSub">Example review layout. Replace with actual testimonials you’re allowed to use.</p>
-        </div>
-      </div>
-
-      <div class="reviews">
-        <div class="review">
-          <div class="stars">★★★★★</div>
-          <p>“COA links were the easiest I’ve seen. Checkout was clean and shipping updates were super clear.”</p>
-          <div class="who">Morgan L.</div>
-          <div class="meta">Verified order • 2 weeks ago</div>
-        </div>
-        <div class="review">
-          <div class="stars">★★★★★</div>
-          <p>“Packaging was discreet, lot info matched, and support replied like… immediately. Rare.”</p>
-          <div class="who">Sam R.</div>
-          <div class="meta">Verified order • 1 month ago</div>
-        </div>
-        <div class="review">
-          <div class="stars">★★★★★</div>
-          <p>“Finally a site that doesn’t feel sketchy. Policies are actually readable.”</p>
-          <div class="who">Alex P.</div>
-          <div class="meta">Verified order • 6 weeks ago</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="faq">
-    <div class="container">
-      <div class="sectionHead">
-        <div>
-          <h2>FAQ</h2>
-          <p class="sectionSub">Short + direct answers. Your support inbox will thank you.</p>
-        </div>
-      </div>
-
-      <div style="display:grid; gap:10px;">
-        <details>
-          <summary>Are these products for human use?</summary>
-          <p>No. All items sold here are intended for research and laboratory use only and are not for human consumption.</p>
-        </details>
-        <details>
-          <summary>Where do I find a COA?</summary>
-          <p>Each product includes a “View COA” link. Add your lot PDFs/URLs in the product list in the code.</p>
-        </details>
-        <details>
-          <summary>What’s the shipping time?</summary>
-          <p>Orders typically process same or next business day. Transit is usually 1–3 business days domestically.</p>
-        </details>
-        <details>
-          <summary>Returns?</summary>
-          <p>Because of the nature of these products, returns may be limited. Spell out your policy clearly and keep it consistent.</p>
-        </details>
-      </div>
-
-      <div class="panel" style="margin-top:14px;">
-        <h3>Get restock alerts</h3>
-        <div class="note">Drop your email. We’ll only hit you when something is back (no newsletter spam arc).</div>
-        <div class="emailRow">
-          <input id="emailInput" type="email" placeholder="you@email.com" />
-          <button class="btn primary" id="emailBtn">Notify me</button>
-        </div>
-        <div class="small" id="emailMsg" style="margin-top:8px;"></div>
-      </div>
-    </div>
-  </section>
-</main>
-
-<footer>
-  <div class="container">
-    <div class="footGrid">
-      <div>
-        <div class="brand" style="gap:12px;">
-          <div class="logo" aria-hidden="true"></div>
-          <div>
-            Peak Peptides
-            <div style="color:var(--muted);font-size:12px;font-weight:600;margin-top:2px;">Premium research-grade supply</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tiny">
-        <b>Compliance note:</b> This template avoids medical claims and dosage instructions. Keep it that way unless your legal/compliance team says otherwise.
-      </div>
-    </div>
-
-    <div class="legalBox">
-      <div class="tiny">
-        <b>Disclaimer:</b> Products on this site are intended for <b>research and laboratory use only</b>. Not for human consumption.
-        This website does not provide medical advice. By purchasing, you agree to the Terms, Shipping, and Returns policies.
-      </div>
-    </div>
-
-    <div style="margin-top:14px; display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-      <div>© <span id="year"></span> Peak Peptides</div>
-      <div class="fineprint">Built as a one-page demo. Connect Stripe/Shopify/etc. for real payments.</div>
-    </div>
-  </div>
-</footer>
-
-<!-- Cart Drawer -->
-<div class="drawerOverlay" id="drawerOverlay" role="dialog" aria-modal="true" aria-label="Cart drawer">
-  <div class="drawer">
-    <div class="drawerTop">
-      <h3>Your cart</h3>
-      <button class="btn" id="closeCartBtn">Close</button>
-    </div>
-
-    <div class="cartItems" id="cartItems"></div>
-
-    <div class="totals">
-      <div class="promoRow">
-        <input type="text" id="promoCode" placeholder="Promo code (try PEAK10)" />
-        <button class="btn" id="applyPromoBtn">Apply</button>
-      </div>
-
-      <div class="row"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
-      <div class="row"><span>Discount</span><strong id="discount">-$0.00</strong></div>
-      <div class="row"><span>Estimated shipping</span><strong id="ship">$6.95</strong></div>
-      <div class="row" style="font-size:14px;"><span>Total</span><strong id="total">$0.00</strong></div>
-
-      <button class="btn primary" id="checkoutBtn">Checkout</button>
-      <div class="fineprint">
-        Demo checkout. For real payments: connect to Shopify/Stripe + ensure your catalog/policies match processor rules.
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- Checkout Modal -->
-<div class="modalOverlay" id="modalOverlay" role="dialog" aria-modal="true" aria-label="Checkout modal">
-  <div class="modal">
-    <div style="display:flex; justify-content:space-between; gap:10px; align-items:center;">
-      <h3>Checkout (demo)</h3>
-      <button class="btn" id="closeModalBtn">Close</button>
-    </div>
-    <p>
-      This template runs on static HTML. To accept payments, pick a platform:
-      <b>Shopify</b> (fastest), <b>Stripe Checkout</b> (custom), or <b>WooCommerce</b> (WordPress).
-    </p>
-    <div class="panel" style="padding:14px; border-radius:16px;">
-      <div class="row"><span>Items</span><strong id="modalItems">0</strong></div>
-      <div class="row"><span>Total</span><strong id="modalTotal">$0.00</strong></div>
-    </div>
-    <button class="btn primary" onclick="alert('Hook this to your real checkout URL.')">Go to payment</button>
-  </div>
-</div>
-
-<script>
-  const PRODUCTS = [
-    {
-      id: "pp-01",
-      name: "Peptide A (5mg)",
-      price: 49.00,
-      tag: "Best seller",
-      desc: "Research-grade peptide with lot-level documentation and clear storage guidance.",
-      chips: ["COA included", "Fast ship", "Discrete"],
-      coaUrl: "#"
-    },
-    {
-      id: "pp-02",
-      name: "Peptide B (10mg)",
-      price: 79.00,
-      tag: "Lab favorite",
-      desc: "Clean catalog listing, transparent batch info, and consistent packaging standards.",
-      chips: ["COA included", "Cold pack option", "Support"],
-      coaUrl: "#"
-    },
-    {
-      id: "pp-03",
-      name: "Peptide C (2mg)",
-      price: 39.00,
-      tag: "Starter pick",
-      desc: "Entry-level option with the same documentation and shipping clarity as everything else.",
-      chips: ["COA included", "Simple returns", "Tracked"],
-      coaUrl: "#"
-    }
-  ];
-
-  const state = {
-    cart: new Map(), // id -> qty
-    promo: null,     // { code, pct }
-    ship: 6.95
-  };
-
-  const fmt = (n) => n.toLocaleString(undefined, { style: "currency", currency: "USD" });
-
-  // Build products
-  const productGrid = document.getElementById("productGrid");
-  productGrid.innerHTML = PRODUCTS.map(p => `
-    <article class="product" data-id="${p.id}">
-      <div class="thumb">
-        <div class="thumbTag">${p.tag}</div>
-        <div class="thumbArt">${p.name.split(" ")[0]}<span style="opacity:.55;">•</span>${p.name.match(/\((.*?)\)/)?.[1] || ""}</div>
-      </div>
-      <div class="pBody">
-        <div class="pTitle">
-          <div>
-            <h3>${p.name}</h3>
-            <div class="small" style="margin-top:4px;">
-              <a class="pill" href="${p.coaUrl}" style="padding:6px 10px;">View COA</a>
-            </div>
-          </div>
-          <div class="price">${fmt(p.price)}</div>
-        </div>
-        <p class="pDesc">${p.desc}</p>
-        <div class="chips">${p.chips.map(c => `<span class="chip">${c}</span>`).join("")}</div>
-        <div class="pActions">
-          <div class="qty" aria-label="Quantity selector">
-            <button class="dec" aria-label="Decrease quantity">−</button>
-            <span class="q">1</span>
-            <button class="inc" aria-label="Increase quantity">+</button>
-          </div>
-          <!-- PayPal Buy Now Button -->
-<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-  <input type="hidden" name="cmd" value="_xclick">
-  <input type="hidden" name="business" value="kuntzeemily@gmail.COM">
-  <input type="hidden" name="item_name" value="Retatrutide (Kit)">
-  <input type="hidden" name="amount" value="149.00">
-  <input type="hidden" name="currency_code" value="USD">
-
-  <input type="hidden" name="no_note" value="1">
-  <input type="hidden" name="shipping" value="9.95">
-  <input type="hidden" name="bn" value="PP-BuyNowBF">
-
-  <button type="submit" class="btn primary">
-    Buy Now with PayPal
-  </button>
-</form>
-
-        </div>
-      </div>
-    </article>
-  `).join("");
-
-  // Qty controls per card
-  productGrid.querySelectorAll(".product").forEach(card => {
-    const qEl = card.querySelector(".q");
-    let qty = 1;
-    card.querySelector(".inc").addEventListener("click", () => { qty = Math.min(99, qty+1); qEl.textContent = qty; });
-    card.querySelector(".dec").addEventListener("click", () => { qty = Math.max(1, qty-1); qEl.textContent = qty; });
-    card.querySelector(".add").addEventListener("click", () => {
-      const id = card.dataset.id;
-      addToCart(id, qty);
-      qty = 1; qEl.textContent = qty;
-      openDrawer();
-    });
-  });
-
-  // Cart functions
-  const cartCount = document.getElementById("cartCount");
-  const drawerOverlay = document.getElementById("drawerOverlay");
-  const cartItems = document.getElementById("cartItems");
-  const subtotalEl = document.getElementById("subtotal");
-  const discountEl = document.getElementById("discount");
-  const shipEl = document.getElementById("ship");
-  const totalEl = document.getElementById("total");
-
-  function addToCart(id, qty){
-    const cur = state.cart.get(id) || 0;
-    state.cart.set(id, cur + qty);
-    renderCart();
-  }
-
-  function setQty(id, qty){
-    if(qty <= 0) state.cart.delete(id);
-    else state.cart.set(id, qty);
-    renderCart();
-  }
-
-  function getLinePrice(id){
-    const p = PRODUCTS.find(x => x.id === id);
-    return p ? p.price : 0;
-  }
-
-  function calcSubtotal(){
-    let s = 0;
-    for(const [id, qty] of state.cart.entries()){
-      s += getLinePrice(id) * qty;
-    }
-    return s;
-  }
-
-  function calcDiscount(sub){
-    if(!state.promo) return 0;
-    return sub * (state.promo.pct / 100);
-  }
-
-  function calcCount(){
-    let c = 0;
-    for(const qty of state.cart.values()) c += qty;
-    return c;
-  }
-
-  function renderCart(){
-    const count = calcCount();
-    cartCount.textContent = count;
-
-    if(count === 0){
-      cartItems.innerHTML = `
-        <div class="panel" style="border-radius:16px; padding:14px;">
-          <div style="font-weight:850;">Your cart is empty</div>
-          <div class="note" style="margin-top:6px;">Add a product and we’ll do the math.</div>
-        </div>
-      `;
-    } else {
-      cartItems.innerHTML = Array.from(state.cart.entries()).map(([id, qty]) => {
-        const p = PRODUCTS.find(x => x.id === id);
-        const line = getLinePrice(id) * qty;
-        return `
-          <div class="cartItem">
-            <div class="ciRow">
+        <div class="hero-card hero-right" aria-label="Highlights">
+          <div class="stat">
+            <div class="stat-top">
               <div>
-                <div class="ciName">${p?.name || "Item"}</div>
-                <div class="ciMeta">${fmt(getLinePrice(id))} • <a href="${p?.coaUrl || "#"}">COA</a></div>
+                <div class="stat-label">What you get</div>
+                <div class="stat-value">Includes essentials</div>
               </div>
-              <div style="font-weight:900;">${fmt(line)}</div>
+              <span class="pill mini">No extra sourcing</span>
             </div>
-            <div class="ciActions">
-              <div class="qty" style="padding:6px 8px;">
-                <button onclick="window.__cartDec('${id}')">−</button>
-                <span>${qty}</span>
-                <button onclick="window.__cartInc('${id}')">+</button>
-              </div>
-              <button class="linkBtn" onclick="window.__cartRemove('${id}')">Remove</button>
-            </div>
+            <div class="bar" aria-hidden="true"><div style="--w:82%"></div></div>
+            <p class="note">Most customers need the same core add-ons. We bundle them so you don’t have to.</p>
           </div>
-        `;
-      }).join("");
-    }
 
-    const sub = calcSubtotal();
-    const disc = calcDiscount(sub);
-    const ship = (count === 0) ? 0 : state.ship;
-    const total = Math.max(0, sub - disc + ship);
+          <div class="stat">
+            <div class="stat-top">
+              <div>
+                <div class="stat-label">Checkout</div>
+                <div class="stat-value">PayPal Buy Now</div>
+              </div>
+              <span class="pill mini">GitHub hosted</span>
+            </div>
+            <div class="bar" aria-hidden="true"><div style="--w:74%"></div></div>
+            <p class="note">Simple, fast, and built for a static site. You’ll receive payment + shipping details in PayPal.</p>
+          </div>
 
-    subtotalEl.textContent = fmt(sub);
-    discountEl.textContent = "-" + fmt(disc);
-    shipEl.textContent = fmt(ship);
-    totalEl.textContent = fmt(total);
-  }
+          <div class="stat">
+            <div class="stat-top">
+              <div>
+                <div class="stat-label">Support</div>
+                <div class="stat-value">Clear, direct answers</div>
+              </div>
+              <span class="pill mini">No chaos</span>
+            </div>
+            <div class="bar" aria-hidden="true"><div style="--w:77%"></div></div>
+            <p class="note">Short policies + straight FAQs = fewer tickets and fewer disputes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  // expose simple hooks for inline buttons
-  window.__cartInc = (id) => setQty(id, (state.cart.get(id)||0) + 1);
-  window.__cartDec = (id) => setQty(id, (state.cart.get(id)||0) - 1);
-  window.__cartRemove = (id) => setQty(id, 0);
+    <!-- Shop -->
+    <section class="section" id="shop">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Shop</h2>
+            <p class="section-sub">Reta Trutide is live. Other products are listed as <strong>Coming Soon</strong>.</p>
+          </div>
+          <span class="pill mini">Tip: edit price + PayPal email in the code</span>
+        </div>
 
-  // Drawer open/close
-  document.getElementById("openCartBtn").addEventListener("click", openDrawer);
-  document.getElementById("closeCartBtn").addEventListener("click", closeDrawer);
-  drawerOverlay.addEventListener("click", (e) => { if(e.target === drawerOverlay) closeDrawer(); });
+        <div class="product-grid">
+          <!-- Live product -->
+          <article class="product-card">
+            <div class="product-thumb">
+              <span class="tag">Live</span>
+              <div class="thumb-art">RETA</div>
+            </div>
 
-  function openDrawer(){ drawerOverlay.style.display = "flex"; }
-  function closeDrawer(){ drawerOverlay.style.display = "none"; }
+            <div class="product-body">
+              <div class="product-top">
+                <div>
+                  <h3>Reta Trutide</h3>
+                  <p class="muted small">Research product • Includes essentials</p>
+                </div>
+                <div class="price" id="retaPriceDisplay">$149.00</div>
+              </div>
 
-  // Promo
-  document.getElementById("applyPromoBtn").addEventListener("click", () => {
-    const code = document.getElementById("promoCode").value.trim().toUpperCase();
-    if(code === "PEAK10"){ state.promo = { code, pct: 10 }; }
-    else if(code === "LAB15"){ state.promo = { code, pct: 15 }; }
-    else { state.promo = null; }
-    renderCart();
-    const msg = state.promo ? `Promo applied: ${state.promo.code} (${state.promo.pct}% off)` : "Promo not recognized.";
-    alert(msg);
-  });
+              <p class="product-desc">
+                Streamlined kit built for disciplined, performance-minded customers who value simplicity and consistency.
+              </p>
 
-  // Checkout modal
-  const modalOverlay = document.getElementById("modalOverlay");
-  document.getElementById("checkoutBtn").addEventListener("click", () => {
-    const count = calcCount();
-    if(count === 0) return alert("Your cart is empty.");
-    const sub = calcSubtotal();
-    const disc = calcDiscount(sub);
-    const ship = state.ship;
-    const total = Math.max(0, sub - disc + ship);
-    document.getElementById("modalItems").textContent = count;
-    document.getElementById("modalTotal").textContent = fmt(total);
-    modalOverlay.style.display = "flex";
-  });
-  document.getElementById("closeModalBtn").addEventListener("click", () => modalOverlay.style.display = "none");
-  modalOverlay.addEventListener("click", (e) => { if(e.target === modalOverlay) modalOverlay.style.display = "none"; });
+              <ul class="chips" aria-label="Highlights">
+                <li class="chip">Includes essentials</li>
+                <li class="chip">Discreet packaging</li>
+                <li class="chip">Fast processing</li>
+              </ul>
 
-  // Quality button scroll
-  document.getElementById("openQualityBtn").addEventListener("click", () => {
-    document.getElementById("quality").scrollIntoView({ behavior: "smooth", block: "start" });
-  });
+              <!-- PayPal Buy Now Button (static-site friendly) -->
+              <form
+                action="https://www.paypal.com/cgi-bin/webscr"
+                method="post"
+                target="_blank"
+                class="paypal-form"
+              >
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" value="YOUR_PAYPAL_BUSINESS_EMAIL">
+                <input type="hidden" name="currency_code" value="USD">
 
-  // Email capture (demo)
-  document.getElementById("emailBtn").addEventListener("click", () => {
-    const el = document.getElementById("emailInput");
-    const msg = document.getElementById("emailMsg");
-    const v = el.value.trim();
-    if(!v || !v.includes("@")) { msg.textContent = "Drop a valid email pls 😌"; msg.style.color = "var(--warn)"; return; }
-    msg.textContent = "You’re on the list. We’ll only email for restocks.";
-    msg.style.color = "var(--brand2)";
-    el.value = "";
-  });
+                <input type="hidden" name="item_name" value="Reta Trutide – Research Product (Includes Essentials)">
+                <input type="hidden" name="amount" value="149.00">
+                <input type="hidden" name="shipping" value="9.95">
+                <input type="hidden" name="quantity" value="1">
 
-  // Init
-  document.getElementById("year").textContent = new Date().getFullYear();
-  renderCart();
-</script>
+                <input type="hidden" name="no_note" value="1">
+                <input type="hidden" name="bn" value="PP-BuyNowBF">
+
+                <button type="submit" class="btn primary full">Buy Now with PayPal</button>
+                <p class="fineprint">Opens PayPal checkout in a new tab.</p>
+              </form>
+            </div>
+          </article>
+
+          <!-- Coming soon products -->
+          <article class="product-card">
+            <div class="product-thumb alt">
+              <span class="tag ghost">Coming soon</span>
+              <div class="thumb-art">TRU</div>
+            </div>
+            <div class="product-body">
+              <div class="product-top">
+                <div>
+                  <h3>Trutide (Coming Soon)</h3>
+                  <p class="muted small">Includes essentials • Launching soon</p>
+                </div>
+                <div class="price muted">$—</div>
+              </div>
+              <p class="product-desc muted">
+                Listed for early visibility. Subscribe below for launch access.
+              </p>
+              <ul class="chips" aria-label="Highlights">
+                <li class="chip">Includes essentials</li>
+                <li class="chip">Transparent policies</li>
+                <li class="chip">Discreet packaging</li>
+              </ul>
+              <button class="btn ghost full" disabled>Coming Soon</button>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-thumb alt2">
+              <span class="tag ghost">Coming soon</span>
+              <div class="thumb-art">NEXT</div>
+            </div>
+            <div class="product-body">
+              <div class="product-top">
+                <div>
+                  <h3>Next Product (Coming Soon)</h3>
+                  <p class="muted small">Includes essentials • Launching soon</p>
+                </div>
+                <div class="price muted">$—</div>
+              </div>
+              <p class="product-desc muted">
+                Placeholder for your next SKU. Keep it listed, keep it compliant.
+              </p>
+              <ul class="chips" aria-label="Highlights">
+                <li class="chip">Includes essentials</li>
+                <li class="chip">Fast processing</li>
+                <li class="chip">Human support</li>
+              </ul>
+              <button class="btn ghost full" disabled>Coming Soon</button>
+            </div>
+          </article>
+        </div>
+
+        <p class="small muted" style="margin-top:14px;">
+          Note: Avoid medical claims and avoid dosage instructions anywhere on the site.
+        </p>
+      </div>
+    </section>
+
+    <!-- What makes us different -->
+    <section class="section" id="different">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>What makes us different</h2>
+            <p class="section-sub">You’re paying for less work and a smoother experience—without the extra sourcing steps.</p>
+          </div>
+        </div>
+
+        <div class="diff-grid">
+          <div class="diff-card">
+            <h3>Includes essentials</h3>
+            <p class="muted">
+              Most customers end up needing the same core extras. We bundle the essentials so you can get started right away.
+            </p>
+          </div>
+
+          <div class="diff-card">
+            <h3>Less setup, less guesswork</h3>
+            <p class="muted">
+              Our pricing is higher because the experience is simpler. Fewer steps. Fewer mistakes. Less back-and-forth.
+            </p>
+          </div>
+
+          <div class="diff-card">
+            <h3>Fitness-focused supply</h3>
+            <p class="muted">
+              Built for disciplined, performance-driven customers who value efficiency, clarity, and consistency.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ + Email -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>FAQ</h2>
+            <p class="section-sub">Short answers, no weirdness.</p>
+          </div>
+        </div>
+
+        <div class="faq-grid">
+          <details class="faq">
+            <summary>What are these products intended for?</summary>
+            <p>Products sold on this website are intended for <strong>research and laboratory use only</strong>. Not for human consumption.</p>
+          </details>
+
+          <details class="faq">
+            <summary>Do orders include anything extra?</summary>
+            <p>Yes—orders are packaged with <strong>essentials</strong> to reduce setup work. Details are provided in your order confirmation.</p>
+          </details>
+
+          <details class="faq">
+            <summary>How does checkout work?</summary>
+            <p>Checkout is handled via PayPal. After purchase, you’ll receive a PayPal confirmation with shipping details and your receipt.</p>
+          </details>
+
+          <details class="faq">
+            <summary>Shipping timeline?</summary>
+            <p>Orders typically process same or next business day. Transit times vary by location and carrier.</p>
+          </details>
+        </div>
+
+        <div class="panel" style="margin-top:14px;">
+          <h3>Restock & launch alerts</h3>
+          <p class="muted">Drop your email. We’ll only ping you for restocks and launches.</p>
+
+          <form class="email-row" id="emailForm">
+            <input type="email" id="emailInput" placeholder="you@email.com" required />
+            <button class="btn primary" type="submit">Notify me</button>
+          </form>
+          <div class="small" id="emailMsg" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="brand footer-brand">
+          <span class="logo" aria-hidden="true"></span>
+          <span class="brand-text">
+            <span class="brand-name">Forge Labs</span>
+            <span class="brand-sub">Fitness-focused research supply</span>
+          </span>
+        </div>
+
+        <div class="footer-note">
+          <strong>Disclaimer:</strong> Products sold on this website are intended for <strong>research and laboratory use only</strong>.
+          Not for human consumption. No medical claims are made or implied.
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Forge Labs</div>
+        <div class="small muted">Hosted on GitHub Pages • PayPal checkout</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
