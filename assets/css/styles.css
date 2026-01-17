@@ -182,10 +182,16 @@ h1{
   background: linear-gradient(90deg, rgba(124,92,255,.9), rgba(54,211,153,.85));
 }
 
-.section{padding:32px 0}
+.section{
+  position: relative;
+  padding: 84px 0;
+  overflow: hidden;
+  background: rgba(7,10,14,.45);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
 .section-head{
   display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
-  margin-bottom:14px;
+  margin-bottom: 22px;
 }
 h2{margin:0; font-size: 26px; letter-spacing: -0.02em}
 .section-sub{margin:6px 0 0; color: var(--muted); font-size:14px; max-width:70ch}
@@ -319,36 +325,41 @@ input::placeholder{color: rgba(159,176,195,.7)}
   .nav-links{display:none}
 }
 
-.section{
-  position: relative;
-  padding: 84px 0;
-  overflow: hidden; /* prevents shadows/gradients from visually bleeding into the next section */
+/* Avoid harsh divider directly after hero */
+.hero + .section{ border-top-color: rgba(255,255,255,.04); }
+
+
+/* =========================
+   Mobile Optimizations
+========================= */
+@media (max-width: 768px){
+  .hero{padding: 52px 0 18px;}
+  .hero-left{padding: 22px;}
+  .hero-right{padding: 14px;}
+  h1{font-size: clamp(30px, 7vw, 40px);}
+  .sub{font-size: 15px;}
+  .section{padding: 64px 0;}
+  .section-head{align-items:flex-start; flex-direction: column;}
+  .pill.mini{align-self:flex-start;}
+  .product-thumb{height: 160px;}
+  .thumb-art{font-size: 32px;}
+  .cta-row{gap:10px;}
+  .trust-item{padding: 9px 10px;}
 }
 
-/* subtle section surface so the body gradient doesn't slice through */
-.section::before{
-  content:"";
-  position:absolute;
-  inset:-1px 0;               /* tiny overlap prevents hairline gaps */
-  background: rgba(7,10,14,.55);
-  border-top: 1px solid var(--border);
-  z-index: 0;
-}
-
-/* ensure content sits above the overlay */
-.section > .container{
-  position: relative;
-  z-index: 1;
-}
-
-/* Remove border on the first section if you want */
-.hero + .section::before{
-  border-top: 1px solid var(--border);
-}
-.section-head{
-  margin-bottom: 22px; /* was 14px */
-}
-.section::before{
-  background: rgba(7,10,14,.40);
-  border-top: 1px solid rgba(255,255,255,.06);
+@media (max-width: 520px){
+  .nav{padding: 12px 0;}
+  .nav-actions .btn.primary{display:none;} /* keep header clean */
+  .btn{width:100%;} /* make CTAs thumb-friendly */
+  .nav-actions .btn{width:auto;} /* except header buttons */
+  .cta-row .btn{width:100%;}
+  .pill{font-size:12px;}
+  .trust-row{gap:8px;}
+  .product-body{padding: 14px;}
+  .chips{gap:6px;}
+  .chip{padding: 6px 9px;}
+  .product-thumb{height: 150px;}
+  .diff-card, .panel{padding: 16px;}
+  .site-footer{padding: 26px 0 40px;}
+  .footer-bottom{flex-direction: column; align-items:flex-start;}
 }
