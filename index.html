@@ -1,3 +1,447 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Peak Peptides — Premium Research Peptides</title>
+  <meta name="description" content="Premium, lab-tested research peptides. Clear COAs, fast shipping, and straightforward pricing." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1620;
+      --card:#111b26;
+      --muted:#9fb0c3;
+      --text:#eaf2fb;
+      --soft:#1b2a3a;
+      --brand:#7c5cff;
+      --brand2:#36d399;
+      --warn:#ffb020;
+      --danger:#ff5c7a;
+      --border: rgba(255,255,255,.09);
+      --shadow: 0 14px 40px rgba(0,0,0,.35);
+      --radius: 20px;
+      --radius2: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:
+        radial-gradient(1200px 600px at 20% -10%, rgba(124,92,255,.35), transparent 55%),
+        radial-gradient(900px 500px at 90% 10%, rgba(54,211,153,.25), transparent 55%),
+        linear-gradient(180deg, var(--bg), #070a0e 70%);
+      color: var(--text);
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1120px, 92vw); margin:0 auto}
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding:8px 12px; border:1px solid var(--border); border-radius:999px;
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-size:13px;
+    }
+    .dot{width:8px;height:8px;border-radius:50%; background: var(--brand2); box-shadow:0 0 0 6px rgba(54,211,153,.12)}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(7,10,14,.55);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px; height:34px; border-radius:12px;
+      background: linear-gradient(135deg, var(--brand), rgba(124,92,255,.25));
+      box-shadow: 0 0 0 6px rgba(124,92,255,.12);
+      border:1px solid rgba(255,255,255,.12);
+      position:relative;
+    }
+    .logo:after{
+      content:"";
+      position:absolute; inset:9px;
+      border-radius:10px;
+      background: linear-gradient(135deg, rgba(54,211,153,.95), rgba(54,211,153,.15));
+      opacity:.95;
+    }
+    .navlinks{display:flex; gap:18px; align-items:center}
+    .navlinks a{
+      color: var(--muted);
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:12px;
+    }
+    .navlinks a:hover{background: rgba(255,255,255,.05); color: var(--text)}
+    .actions{display:flex; gap:10px; align-items:center}
+    .btn{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:650;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      display:inline-flex; gap:10px; align-items:center; justify-content:center;
+      user-select:none;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.06)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), rgba(124,92,255,.6));
+      border-color: rgba(124,92,255,.55);
+      box-shadow: 0 18px 38px rgba(124,92,255,.18);
+    }
+    .btn.primary:hover{background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(124,92,255,.55))}
+    .btn.ghost{background: transparent}
+    .badgeCount{
+      min-width:20px; height:20px; border-radius:999px;
+      padding:0 6px;
+      font-size:12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background: rgba(54,211,153,.15);
+      border:1px solid rgba(54,211,153,.35);
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero{padding:64px 0 24px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    .heroCard{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .heroLeft{padding:34px}
+    h1{
+      margin:14px 0 12px;
+      font-size: clamp(34px, 4vw, 52px);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.55;
+      max-width: 56ch;
+    }
+    .heroCtas{display:flex; gap:12px; flex-wrap:wrap; margin-top:20px}
+    .trustRow{
+      display:flex; gap:10px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .trustItem{
+      display:flex; gap:10px; align-items:center;
+      padding:10px 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .trustIcon{
+      width:28px;height:28px;border-radius:12px;
+      display:inline-flex; align-items:center; justify-content:center;
+      background: rgba(124,92,255,.14);
+      border:1px solid rgba(124,92,255,.25);
+      color: var(--text);
+      font-weight:800;
+    }
+
+    .heroRight{
+      padding:18px;
+      display:grid; gap:12px;
+    }
+    .stat{
+      padding:16px;
+      border-radius: 18px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .statTop{display:flex; justify-content:space-between; align-items:center; gap:12px}
+    .statLabel{color: var(--muted); font-size:13px}
+    .statValue{font-weight:800; font-size:18px}
+    .bar{
+      height:10px; border-radius:999px;
+      background: rgba(255,255,255,.05);
+      border:1px solid var(--border);
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .bar > div{
+      height:100%;
+      width: var(--w,60%);
+      background: linear-gradient(90deg, rgba(124,92,255,.9), rgba(54,211,153,.85));
+    }
+    .note{
+      color: var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    /* Section */
+    section{padding:32px 0}
+    .sectionHead{
+      display:flex; justify-content:space-between; align-items:flex-end; gap:14px;
+      margin-bottom:14px;
+    }
+    h2{
+      margin:0;
+      font-size: 26px;
+      letter-spacing: -0.02em;
+    }
+    .sectionSub{margin:0; color: var(--muted); font-size:14px; max-width:64ch}
+
+    /* Products */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .product{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      overflow:hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,.25);
+      display:flex; flex-direction:column;
+    }
+    .thumb{
+      height:190px;
+      background:
+        radial-gradient(240px 120px at 30% 30%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(240px 120px at 70% 40%, rgba(54,211,153,.22), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+      border-bottom:1px solid var(--border);
+      position:relative;
+    }
+    .thumbTag{
+      position:absolute; top:12px; left:12px;
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(7,10,14,.55);
+      color: var(--muted);
+      font-size:12px;
+    }
+    .thumbArt{
+      position:absolute; inset:0;
+      display:flex; align-items:center; justify-content:center;
+      font-weight:900;
+      letter-spacing:-0.03em;
+      font-size: 34px;
+      opacity:.95;
+    }
+    .pBody{padding:16px; display:grid; gap:10px}
+    .pTitle{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
+    .pTitle h3{margin:0; font-size:16px}
+    .price{font-weight:900}
+    .pDesc{margin:0; color: var(--muted); font-size:13px; line-height:1.55}
+    .chips{display:flex; flex-wrap:wrap; gap:8px}
+    .chip{
+      font-size:12px; color: var(--muted);
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .pActions{display:flex; gap:10px; align-items:center; margin-top:2px}
+    .qty{
+      display:flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+    }
+    .qty button{
+      width:28px;height:28px;border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--text);
+      cursor:pointer;
+      font-weight:900;
+    }
+    .qty span{min-width:20px; text-align:center; font-weight:800}
+    .pActions .btn{flex:1}
+
+    /* Split */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .panel{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:18px;
+      box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    }
+    .panel h3{margin:0 0 10px; font-size:16px}
+    .list{display:grid; gap:10px}
+    .li{display:flex; gap:10px; align-items:flex-start; color: var(--muted); font-size:13px; line-height:1.55}
+    .li b{color: var(--text)}
+    .check{
+      width:22px;height:22px;border-radius:8px;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:1px solid rgba(54,211,153,.35);
+      background: rgba(54,211,153,.12);
+      flex:0 0 auto;
+      margin-top:1px;
+    }
+
+    /* Reviews */
+    .reviews{display:grid; grid-template-columns: repeat(3, 1fr); gap:14px}
+    .review{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: var(--radius);
+      padding:16px;
+    }
+    .stars{letter-spacing:2px}
+    .review p{margin:10px 0 0; color: var(--muted); font-size:13px; line-height:1.55}
+    .review .who{margin-top:12px; color: var(--text); font-weight:700; font-size:13px}
+    .review .meta{color: var(--muted); font-size:12px}
+
+    /* FAQ */
+    details{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight:750;
+      color: var(--text);
+      outline:none;
+      list-style:none;
+    }
+    details summary::-webkit-details-marker{display:none}
+    details p{margin:10px 0 0; color: var(--muted); font-size:13px; line-height:1.6}
+
+    /* Email */
+    .emailRow{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    input[type="email"], input[type="text"]{
+      flex:1;
+      min-width: 220px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 14px;
+      padding:12px 14px;
+      color: var(--text);
+      outline:none;
+    }
+    input::placeholder{color: rgba(159,176,195,.7)}
+
+    /* Footer */
+    footer{padding:32px 0 46px; color: var(--muted); font-size:13px}
+    .footGrid{display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap}
+    .tiny{font-size:12px; line-height:1.55; max-width: 80ch}
+    .legalBox{
+      margin-top:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      border-radius: 16px;
+      padding:12px 14px;
+    }
+
+    /* Cart Drawer */
+    .drawerOverlay{
+      position:fixed; inset:0; z-index:80;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:stretch;
+      justify-content:flex-end;
+    }
+    .drawer{
+      width:min(420px, 92vw);
+      background: rgba(10,14,20,.92);
+      border-left:1px solid var(--border);
+      box-shadow: -30px 0 80px rgba(0,0,0,.5);
+      padding:16px;
+      display:flex; flex-direction:column;
+      gap:12px;
+    }
+    .drawerTop{display:flex; justify-content:space-between; align-items:center; gap:10px}
+    .drawerTop h3{margin:0; font-size:16px}
+    .cartItems{display:grid; gap:10px; overflow:auto; padding-right:6px; max-height: 48vh}
+    .cartItem{
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      border-radius: 16px;
+      padding:12px;
+      display:grid; gap:8px;
+    }
+    .ciRow{display:flex; justify-content:space-between; gap:10px; align-items:flex-start}
+    .ciName{font-weight:800; font-size:13px}
+    .ciMeta{color: var(--muted); font-size:12px}
+    .ciActions{display:flex; justify-content:space-between; gap:10px; align-items:center}
+    .linkBtn{
+      border:none; background:transparent; color: var(--muted);
+      cursor:pointer; padding:6px 8px; border-radius:12px;
+    }
+    .linkBtn:hover{background: rgba(255,255,255,.05); color: var(--text)}
+    .totals{
+      border-top:1px solid var(--border);
+      padding-top:12px;
+      display:grid; gap:10px;
+    }
+    .row{display:flex; justify-content:space-between; gap:10px; color: var(--muted); font-size:13px}
+    .row strong{color: var(--text)}
+    .promoRow{display:flex; gap:10px; flex-wrap:wrap}
+    .small{font-size:12px; color: var(--muted)}
+    .fineprint{font-size:11px; color: rgba(159,176,195,.8); line-height:1.5}
+
+    /* Modal */
+    .modalOverlay{
+      position:fixed; inset:0; z-index:90;
+      background: rgba(0,0,0,.6);
+      backdrop-filter: blur(6px);
+      display:none;
+      align-items:center; justify-content:center;
+      padding:16px;
+    }
+    .modal{
+      width:min(520px, 96vw);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      background: rgba(10,14,20,.92);
+      box-shadow: var(--shadow);
+      padding:18px;
+      display:grid; gap:12px;
+    }
+    .modal h3{margin:0; font-size:18px}
+    .modal p{margin:0; color: var(--muted); font-size:13px; line-height:1.55}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns:1fr; }
+      .grid{grid-template-columns: 1fr; }
+      .split{grid-template-columns:1fr}
+      .reviews{grid-template-columns:1fr}
+      .navlinks{display:none}
+    }
+  </style>
+</head>
+
 <body>
 <header>
   <div class="container nav">
@@ -301,3 +745,244 @@
     <button class="btn primary" onclick="alert('Hook this to your real checkout URL.')">Go to payment</button>
   </div>
 </div>
+
+<script>
+  const PRODUCTS = [
+    {
+      id: "pp-01",
+      name: "Peptide A (5mg)",
+      price: 49.00,
+      tag: "Best seller",
+      desc: "Research-grade peptide with lot-level documentation and clear storage guidance.",
+      chips: ["COA included", "Fast ship", "Discrete"],
+      coaUrl: "#"
+    },
+    {
+      id: "pp-02",
+      name: "Peptide B (10mg)",
+      price: 79.00,
+      tag: "Lab favorite",
+      desc: "Clean catalog listing, transparent batch info, and consistent packaging standards.",
+      chips: ["COA included", "Cold pack option", "Support"],
+      coaUrl: "#"
+    },
+    {
+      id: "pp-03",
+      name: "Peptide C (2mg)",
+      price: 39.00,
+      tag: "Starter pick",
+      desc: "Entry-level option with the same documentation and shipping clarity as everything else.",
+      chips: ["COA included", "Simple returns", "Tracked"],
+      coaUrl: "#"
+    }
+  ];
+
+  const state = {
+    cart: new Map(), // id -> qty
+    promo: null,     // { code, pct }
+    ship: 6.95
+  };
+
+  const fmt = (n) => n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+
+  // Build products
+  const productGrid = document.getElementById("productGrid");
+  productGrid.innerHTML = PRODUCTS.map(p => `
+    <article class="product" data-id="${p.id}">
+      <div class="thumb">
+        <div class="thumbTag">${p.tag}</div>
+        <div class="thumbArt">${p.name.split(" ")[0]}<span style="opacity:.55;">•</span>${p.name.match(/\((.*?)\)/)?.[1] || ""}</div>
+      </div>
+      <div class="pBody">
+        <div class="pTitle">
+          <div>
+            <h3>${p.name}</h3>
+            <div class="small" style="margin-top:4px;">
+              <a class="pill" href="${p.coaUrl}" style="padding:6px 10px;">View COA</a>
+            </div>
+          </div>
+          <div class="price">${fmt(p.price)}</div>
+        </div>
+        <p class="pDesc">${p.desc}</p>
+        <div class="chips">${p.chips.map(c => `<span class="chip">${c}</span>`).join("")}</div>
+        <div class="pActions">
+          <div class="qty" aria-label="Quantity selector">
+            <button class="dec" aria-label="Decrease quantity">−</button>
+            <span class="q">1</span>
+            <button class="inc" aria-label="Increase quantity">+</button>
+          </div>
+          <button class="btn primary add">Add to cart</button>
+        </div>
+      </div>
+    </article>
+  `).join("");
+
+  // Qty controls per card
+  productGrid.querySelectorAll(".product").forEach(card => {
+    const qEl = card.querySelector(".q");
+    let qty = 1;
+    card.querySelector(".inc").addEventListener("click", () => { qty = Math.min(99, qty+1); qEl.textContent = qty; });
+    card.querySelector(".dec").addEventListener("click", () => { qty = Math.max(1, qty-1); qEl.textContent = qty; });
+    card.querySelector(".add").addEventListener("click", () => {
+      const id = card.dataset.id;
+      addToCart(id, qty);
+      qty = 1; qEl.textContent = qty;
+      openDrawer();
+    });
+  });
+
+  // Cart functions
+  const cartCount = document.getElementById("cartCount");
+  const drawerOverlay = document.getElementById("drawerOverlay");
+  const cartItems = document.getElementById("cartItems");
+  const subtotalEl = document.getElementById("subtotal");
+  const discountEl = document.getElementById("discount");
+  const shipEl = document.getElementById("ship");
+  const totalEl = document.getElementById("total");
+
+  function addToCart(id, qty){
+    const cur = state.cart.get(id) || 0;
+    state.cart.set(id, cur + qty);
+    renderCart();
+  }
+
+  function setQty(id, qty){
+    if(qty <= 0) state.cart.delete(id);
+    else state.cart.set(id, qty);
+    renderCart();
+  }
+
+  function getLinePrice(id){
+    const p = PRODUCTS.find(x => x.id === id);
+    return p ? p.price : 0;
+  }
+
+  function calcSubtotal(){
+    let s = 0;
+    for(const [id, qty] of state.cart.entries()){
+      s += getLinePrice(id) * qty;
+    }
+    return s;
+  }
+
+  function calcDiscount(sub){
+    if(!state.promo) return 0;
+    return sub * (state.promo.pct / 100);
+  }
+
+  function calcCount(){
+    let c = 0;
+    for(const qty of state.cart.values()) c += qty;
+    return c;
+  }
+
+  function renderCart(){
+    const count = calcCount();
+    cartCount.textContent = count;
+
+    if(count === 0){
+      cartItems.innerHTML = `
+        <div class="panel" style="border-radius:16px; padding:14px;">
+          <div style="font-weight:850;">Your cart is empty</div>
+          <div class="note" style="margin-top:6px;">Add a product and we’ll do the math.</div>
+        </div>
+      `;
+    } else {
+      cartItems.innerHTML = Array.from(state.cart.entries()).map(([id, qty]) => {
+        const p = PRODUCTS.find(x => x.id === id);
+        const line = getLinePrice(id) * qty;
+        return `
+          <div class="cartItem">
+            <div class="ciRow">
+              <div>
+                <div class="ciName">${p?.name || "Item"}</div>
+                <div class="ciMeta">${fmt(getLinePrice(id))} • <a href="${p?.coaUrl || "#"}">COA</a></div>
+              </div>
+              <div style="font-weight:900;">${fmt(line)}</div>
+            </div>
+            <div class="ciActions">
+              <div class="qty" style="padding:6px 8px;">
+                <button onclick="window.__cartDec('${id}')">−</button>
+                <span>${qty}</span>
+                <button onclick="window.__cartInc('${id}')">+</button>
+              </div>
+              <button class="linkBtn" onclick="window.__cartRemove('${id}')">Remove</button>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    const sub = calcSubtotal();
+    const disc = calcDiscount(sub);
+    const ship = (count === 0) ? 0 : state.ship;
+    const total = Math.max(0, sub - disc + ship);
+
+    subtotalEl.textContent = fmt(sub);
+    discountEl.textContent = "-" + fmt(disc);
+    shipEl.textContent = fmt(ship);
+    totalEl.textContent = fmt(total);
+  }
+
+  // expose simple hooks for inline buttons
+  window.__cartInc = (id) => setQty(id, (state.cart.get(id)||0) + 1);
+  window.__cartDec = (id) => setQty(id, (state.cart.get(id)||0) - 1);
+  window.__cartRemove = (id) => setQty(id, 0);
+
+  // Drawer open/close
+  document.getElementById("openCartBtn").addEventListener("click", openDrawer);
+  document.getElementById("closeCartBtn").addEventListener("click", closeDrawer);
+  drawerOverlay.addEventListener("click", (e) => { if(e.target === drawerOverlay) closeDrawer(); });
+
+  function openDrawer(){ drawerOverlay.style.display = "flex"; }
+  function closeDrawer(){ drawerOverlay.style.display = "none"; }
+
+  // Promo
+  document.getElementById("applyPromoBtn").addEventListener("click", () => {
+    const code = document.getElementById("promoCode").value.trim().toUpperCase();
+    if(code === "PEAK10"){ state.promo = { code, pct: 10 }; }
+    else if(code === "LAB15"){ state.promo = { code, pct: 15 }; }
+    else { state.promo = null; }
+    renderCart();
+    const msg = state.promo ? `Promo applied: ${state.promo.code} (${state.promo.pct}% off)` : "Promo not recognized.";
+    alert(msg);
+  });
+
+  // Checkout modal
+  const modalOverlay = document.getElementById("modalOverlay");
+  document.getElementById("checkoutBtn").addEventListener("click", () => {
+    const count = calcCount();
+    if(count === 0) return alert("Your cart is empty.");
+    const sub = calcSubtotal();
+    const disc = calcDiscount(sub);
+    const ship = state.ship;
+    const total = Math.max(0, sub - disc + ship);
+    document.getElementById("modalItems").textContent = count;
+    document.getElementById("modalTotal").textContent = fmt(total);
+    modalOverlay.style.display = "flex";
+  });
+  document.getElementById("closeModalBtn").addEventListener("click", () => modalOverlay.style.display = "none");
+  modalOverlay.addEventListener("click", (e) => { if(e.target === modalOverlay) modalOverlay.style.display = "none"; });
+
+  // Quality button scroll
+  document.getElementById("openQualityBtn").addEventListener("click", () => {
+    document.getElementById("quality").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+
+  // Email capture (demo)
+  document.getElementById("emailBtn").addEventListener("click", () => {
+    const el = document.getElementById("emailInput");
+    const msg = document.getElementById("emailMsg");
+    const v = el.value.trim();
+    if(!v || !v.includes("@")) { msg.textContent = "Drop a valid email pls 😌"; msg.style.color = "var(--warn)"; return; }
+    msg.textContent = "You’re on the list. We’ll only email for restocks.";
+    msg.style.color = "var(--brand2)";
+    el.value = "";
+  });
+
+  // Init
+  document.getElementById("year").textContent = new Date().getFullYear();
+  renderCart();
+</script>
+</body>
+</html>
