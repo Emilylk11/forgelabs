@@ -376,3 +376,29 @@ input::placeholder{color: rgba(159,176,195,.7)}
   );
   pointer-events:none;
 }
+
+.section::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  width:120%;
+  height:1px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,0) 70%
+  );
+  pointer-events:none;
+}
+.product-card,
+.diff-card,
+.faq,
+.panel{
+  position: relative;
+  z-index: 2;
+}
+.section::after{
+  opacity: .6;
+}
