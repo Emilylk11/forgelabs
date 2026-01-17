@@ -318,3 +318,37 @@ input::placeholder{color: rgba(159,176,195,.7)}
   .faq-grid{grid-template-columns:1fr}
   .nav-links{display:none}
 }
+
+.section{
+  position: relative;
+  padding: 84px 0;
+  overflow: hidden; /* prevents shadows/gradients from visually bleeding into the next section */
+}
+
+/* subtle section surface so the body gradient doesn't slice through */
+.section::before{
+  content:"";
+  position:absolute;
+  inset:-1px 0;               /* tiny overlap prevents hairline gaps */
+  background: rgba(7,10,14,.55);
+  border-top: 1px solid var(--border);
+  z-index: 0;
+}
+
+/* ensure content sits above the overlay */
+.section > .container{
+  position: relative;
+  z-index: 1;
+}
+
+/* Remove border on the first section if you want */
+.hero + .section::before{
+  border-top: 1px solid var(--border);
+}
+.section-head{
+  margin-bottom: 22px; /* was 14px */
+}
+.section::before{
+  background: rgba(7,10,14,.40);
+  border-top: 1px solid rgba(255,255,255,.06);
+}
