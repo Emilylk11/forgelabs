@@ -421,3 +421,18 @@ input::placeholder{color: rgba(159,176,195,.7)}
 #faq{
   background: var(--section-gradient);
 }
+.product-thumb{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;     /* change to 4/3 or 1/1 if you want */
+  overflow: hidden;
+  border-radius: 18px;      /* match your card rounding */
+}
+
+.thumb-img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;      /* contain = whole product visible */
+  /* object-fit: cover;     cover = fills box, may crop */
+}
