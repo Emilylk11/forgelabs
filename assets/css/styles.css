@@ -436,3 +436,50 @@ input::placeholder{color: rgba(159,176,195,.7)}
   object-fit: contain;      /* contain = whole product visible */
   /* object-fit: cover;     cover = fills box, may crop */
 }
+/* =========================
+   FAQ spacing + section rhythm fixes
+   (add at END of styles.css)
+========================= */
+
+/* Reduce overall section padding (you said there’s too much) */
+.section{
+  padding: 64px 0 84px; /* was 84/110 */
+}
+
+/* More breathing room between section heading + subheading */
+.section-head{ 
+  margin-bottom: 28px; /* was 22 */
+}
+.section-sub{
+  margin-top: 10px; /* was 6 */
+  line-height: 1.6;
+}
+
+/* FAQ layout: more spacing + nicer click target */
+.faq-grid{
+  gap: 14px;              /* was 10 */
+  margin-bottom: 26px;    /* creates separation from the email panel */
+}
+
+.faq{
+  padding: 16px 18px;     /* was 12/14 */
+}
+
+.faq summary{
+  line-height: 1.35;
+  padding: 2px 0;         /* subtle breathing room */
+}
+
+.faq p{
+  margin-top: 12px;       /* was 10 */
+}
+
+/* Email panel should never feel glued to FAQ */
+#faq .panel{
+  margin-top: 26px !important; /* beats the inline 14px */
+}
+
+/* Optional: keep FAQ grid at 2 columns a bit longer on mid screens */
+@media (max-width: 860px){
+  .faq-grid{ grid-template-columns: 1fr; }
+}
