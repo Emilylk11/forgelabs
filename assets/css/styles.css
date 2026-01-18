@@ -417,3 +417,7 @@ input::placeholder{color: rgba(159,176,195,.7)}
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
+#shop,
+#faq{
+  background: var(--section-gradient);
+}
