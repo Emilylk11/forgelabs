@@ -22,7 +22,7 @@
 html,body{height:100%}
 body{
   margin:0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-family: ui-sans-serif, system-ui, -apple-system, Montserrat, Roboto, Helvetica, Arial;
   background: #070a0e; /* flat base */
   color: var(--text);
   overflow-x:hidden;
