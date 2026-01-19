@@ -514,7 +514,7 @@ input::placeholder{color: rgba(159,176,195,.7)}
 
 #focus.focus{
   position: relative;
-  padding: clamp(72px, 8vw, 110px) 0 48px;
+  padding: clamp(40px, 8vw, 60px) 0 48px;
   overflow: hidden;
   background:
     radial-gradient(900px 400px at 20% 10%, rgba(124,92,255,0.14), transparent 60%),
