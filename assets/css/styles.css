@@ -504,3 +504,62 @@ input::placeholder{color: rgba(159,176,195,.7)}
   text-decoration: underline;
 }
 
+/* ===========================
+   CATEGORIES SECTION POLISH
+   =========================== */
+
+#categories.section{
+  position: relative;
+  border-radius: 28px;
+  padding: 84px 24px 36px; /* keeps your spacing, but feels more "sectioned" */
+  margin-top: 12px;
+  overflow: hidden;
+}
+
+/* Soft section panel behind the cards */
+#categories.section::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  background:
+    radial-gradient(800px 320px at 18% 25%, rgba(96,165,250,.18), transparent 60%),
+    radial-gradient(700px 280px at 78% 35%, rgba(191,219,254,.10), transparent 55%),
+    linear-gradient(180deg, rgba(15,23,42,.35), rgba(2,6,23,0));
+  border: 1px solid rgba(148, 163, 184, 0.12);
+  border-radius: 28px;
+  pointer-events:none;
+  z-index: 0;
+}
+
+/* Keep content above the panel */
+#categories .section-header,
+#categories .grid,
+#categories .section-note{
+  position: relative;
+  z-index: 1;
+}
+
+/* Slightly more “glass” + calmer border */
+#categories .card{
+  border-color: rgba(148,163,184,.38);
+  background:
+    radial-gradient(circle at top left, rgba(191,219,254,.18), transparent 55%),
+    rgba(15,23,42,.92);
+}
+
+/* Pills feel more like clickable chips */
+#categories .pill-list li{
+  border-color: rgba(148,163,184,.45);
+  background: rgba(2,6,23,.25);
+}
+
+/* Mobile: keep it comfy */
+@media (max-width: 640px){
+  #categories.section{
+    padding: 64px 14px 28px;
+    border-radius: 22px;
+  }
+  #categories.section::before{
+    border-radius: 22px;
+  }
+}
