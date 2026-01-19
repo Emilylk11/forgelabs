@@ -114,7 +114,7 @@ strong{color:var(--text)}
 .btn.full{width:100%}
 .btn:disabled{opacity:.55; cursor:not-allowed; transform:none}
 
-.hero{padding:64px 0 24px}
+.hero{padding:64px 0 44px}
 .hero-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:22px; align-items:stretch}
 .hero-card{
   background: rgba(255,255,255,.03);
@@ -185,7 +185,7 @@ h1{
 
 .section{
   position: relative;
-  padding: 84px 0 110px;          /* extra bottom room so divider sits BELOW cards */
+  padding: 40px 0 70px;          /* extra bottom room so divider sits BELOW cards */
   overflow: hidden;
   background: transparent;
   border-top: none;               /* ✅ kill the harsh seam */
