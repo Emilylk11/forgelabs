@@ -1216,3 +1216,57 @@ input::placeholder{color: rgba(159,176,195,.7)}
 @media (max-width: 520px){
   .why__grid{ grid-template-columns: 1fr; }
 }
+
+/* ===========================
+   ACCESS SECTION — CENTERED HEADER
+   =========================== */
+
+#access .access__head{
+  text-align: center;
+  margin: 0 auto 42px;
+}
+
+/* Remove the left vertical bar entirely */
+#access .access__bar{
+  display: none;
+}
+
+/* Center the title text */
+#access .access__title{
+  justify-content: center;
+  text-align: center;
+}
+
+/* Match Peptide focus areas subheading width + feel */
+#access .access__sub{
+  margin: 0 auto;
+  max-width: 72ch;
+  text-align: center;
+}
+/* ===========================
+   WHAT MAKES FORGE LABS DIFFERENT
+   CENTERED HEADER (NO BAR)
+   =========================== */
+
+#why .why__head{
+  text-align: center;
+  margin: 0 auto 42px;
+}
+
+/* Remove the vertical accent bar */
+#why .why__bar{
+  display: none;
+}
+
+/* Center the heading */
+#why .why__title{
+  justify-content: center;
+  text-align: center;
+}
+
+/* Center + constrain subheading like Focus section */
+#why .why__sub{
+  margin: 0 auto;
+  max-width: 72ch;
+  text-align: center;
+}
