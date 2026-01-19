@@ -483,3 +483,24 @@ input::placeholder{color: rgba(159,176,195,.7)}
 @media (max-width: 860px){
   .faq-grid{ grid-template-columns: 1fr; }
 }
+
+.footer-contact{
+  margin-top: 18px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-contact a{
+  color: var(--brand2);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer-contact a:hover{
+  text-decoration: underline;
+}
+
