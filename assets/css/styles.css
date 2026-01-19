@@ -1314,3 +1314,17 @@ input::placeholder{color: rgba(159,176,195,.7)}
 .access-card--contact .access-card__fineprint{
   text-align: center;
 }
+/* ===========================
+   FIX: CENTER CONTACT BUTTONS
+   =========================== */
+
+.access-card--contact .access-card__actions--stack{
+  align-items: center;      /* center buttons horizontally */
+  margin: 0 auto;           /* center the actions container itself */
+}
+
+/* Optional: make buttons a consistent width (looks cleaner) */
+.access-card--contact .access-btn{
+  width: 100%;
+  max-width: 320px;
+}
