@@ -52,3 +52,21 @@
   });
 })();
 
+// Optional: subtle mouse-follow glow on the lab card
+(() => {
+  const card = document.querySelector(".lab-card");
+  if (!card) return;
+
+  card.addEventListener("mousemove", (e) => {
+    const r = card.getBoundingClientRect();
+    const x = ((e.clientX - r.left) / r.width) * 100;
+    const y = ((e.clientY - r.top) / r.height) * 100;
+    card.style.setProperty("--mouse-x", `${x}%`);
+    card.style.setProperty("--mouse-y", `${y}%`);
+  });
+
+  card.addEventListener("mouseleave", () => {
+    card.style.removeProperty("--mouse-x");
+    card.style.removeProperty("--mouse-y");
+  });
+})();
