@@ -352,7 +352,7 @@ input::placeholder{color: rgba(159,176,195,.7)}
 
 @media (max-width: 520px){
   .nav{padding: 12px 0;}
-  .nav-actions .btn.primary{display:none;} /* keep header clean */
+  .nav-actions .btn.ghost{display:none;} /* keep header clean */
   .btn{width:100%;} /* make CTAs thumb-friendly */
   .nav-actions .btn{width:auto;} /* except header buttons */
   .cta-row .btn{width:100%;}
