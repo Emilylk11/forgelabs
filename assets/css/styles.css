@@ -1285,3 +1285,32 @@ input::placeholder{color: rgba(159,176,195,.7)}
   color: rgba(226,232,240,0.55);
   font-size: 0.95rem;
 }
+/* ===========================
+   CONTACT CARD — CENTER CONTENT
+   =========================== */
+
+.access-card--contact{
+  text-align: center;
+}
+
+/* Center the top row (icon + title) */
+.access-card--contact .access-card__top{
+  justify-content: center;
+}
+
+/* Center description text */
+.access-card--contact .access-card__desc{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 60ch;
+}
+
+/* Center buttons and stack nicely */
+.access-card--contact .access-card__actions{
+  align-items: center;
+}
+
+/* Fine print centered */
+.access-card--contact .access-card__fineprint{
+  text-align: center;
+}
