@@ -255,3 +255,52 @@ document.addEventListener("DOMContentLoaded", () => {
   select.addEventListener("change", sync);
   sync();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.querySelector(".variant-select");
+  const priceEl = document.querySelector(".product-price");
+  const form = document.querySelector("form.paypal-form");
+
+  if (!select || !priceEl || !form) {
+    console.warn("Missing select/price/form", { select: !!select, priceEl: !!priceEl, form: !!form });
+    return;
+  }
+
+  const ppAmount = form.querySelector('[data-pp="amount"]');
+  const ppSku = form.querySelector('[data-pp="sku"]');
+  const ppCustom = form.querySelector('[data-pp="custom"]');
+
+  if (!ppAmount || !ppSku || !ppCustom) {
+    console.warn("Missing data-pp fields", { ppAmount: !!ppAmount, ppSku: !!ppSku, ppCustom: !!ppCustom });
+    return;
+  }
+
+  const money = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toFixed(2) : String(v);
+  };
+  const displayMoney = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
+  };
+
+  function sync() {
+    const opt = select.options[select.selectedIndex];
+    const price = opt.dataset.price || "0.00";
+    const sku = opt.dataset.sku || ppSku.value;
+    const label = opt.dataset.label || opt.textContent.trim();
+
+    // UI
+    priceEl.textContent = displayMoney(price);
+
+    // PayPal
+    ppAmount.value = money(price);
+    ppSku.value = sku;
+    ppCustom.value = `Variant: ${label}`;
+
+    console.log("Updated PayPal:", { amount: ppAmount.value, sku: ppSku.value, custom: ppCustom.value });
+  }
+
+  select.addEventListener("change", sync);
+  sync();
+});
