@@ -1328,3 +1328,19 @@ input::placeholder{color: rgba(159,176,195,.7)}
   width: 100%;
   max-width: 320px;
 }
+
+.site-header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  backdrop-filter: blur(10px);
+  background: rgba(7,10,14,.55);
+  border-bottom: 1px solid var(--border);
+}
+
+/* add top padding so content doesn't hide under header */
+body{
+  padding-top: 68px; /* adjust to your header height */
+}
