@@ -251,7 +251,7 @@ h2{margin:0; font-size: 26px; letter-spacing: -0.02em}
 .product-body{padding:16px; display:grid; gap:10px}
 .product-top{display:flex; justify-content:space-between; gap:12px; align-items:flex-start}
 .product-top h3{margin:0; font-size:16px}
-.price{font-weight:950}
+.product-price{font-weight:950}
 .product-desc{margin:0; color: var(--muted); font-size:13px; line-height:1.55}
 
 .chips{display:flex; flex-wrap:wrap; gap:8px; padding:0; margin:0; list-style:none}
