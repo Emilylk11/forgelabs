@@ -70,3 +70,39 @@
     card.style.removeProperty("--mouse-y");
   });
 })();
+
+(function () {
+  const variant = document.getElementById("retaVariant");
+  const priceEl = document.getElementById("retaPriceDisplay");
+
+  const ppItemName = document.getElementById("ppItemName");
+  const ppItemNumber = document.getElementById("ppItemNumber");
+  const ppAmount = document.getElementById("ppAmount");
+  const ppCustom = document.getElementById("ppCustom");
+
+  if (!variant || !priceEl || !ppItemName || !ppItemNumber || !ppAmount || !ppCustom) return;
+
+  function money(v){
+    const n = Number(v);
+    if (Number.isNaN(n)) return v;
+    return n.toFixed(2);
+  }
+
+  function sync() {
+    const opt = variant.options[variant.selectedIndex];
+    const price = opt.dataset.price || "0.00";
+    const sku = opt.dataset.sku || "";
+    const label = opt.dataset.label || opt.textContent.trim();
+
+    priceEl.textContent = `$${money(price)}`;
+
+    // Update what PayPal receives
+    ppItemName.value = `Retatrutide – Research Product (${label})`;
+    ppItemNumber.value = sku || "FL-RT";
+    ppAmount.value = money(price);
+    ppCustom.value = `Variant: ${label} • Includes essentials`;
+  }
+
+  variant.addEventListener("change", sync);
+  sync(); // initialize on load
+})();
