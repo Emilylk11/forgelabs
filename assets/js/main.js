@@ -164,3 +164,47 @@ document.addEventListener("DOMContentLoaded", () => {
   select.addEventListener("change", sync);
   sync();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.getElementById("retaVariant");
+  const priceEl = document.getElementById("retaPriceDisplay");
+  const titleEl = document.getElementById("retaTitle");
+
+  // PayPal hidden fields
+  const ppAmount = document.getElementById("ppAmount");
+  const ppItemNumber = document.getElementById("ppItemNumber"); // optional
+  const ppCustom = document.getElementById("ppCustom");         // optional
+
+  if (!select || !priceEl) return;
+
+  const baseName = titleEl ? titleEl.textContent.trim() : "Product";
+
+  const fmt = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
+  };
+
+  const money = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n.toFixed(2) : String(v);
+  };
+
+  function sync(){
+    const opt = select.options[select.selectedIndex];
+    const price = opt.dataset.price || "0.00";
+    const label = opt.dataset.label || opt.textContent.trim();
+    const sku = opt.dataset.sku || "";
+
+    // Update UI
+    priceEl.textContent = fmt(price);
+    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
+
+    // Update PayPal
+    if (ppAmount) ppAmount.value = money(price);
+    if (ppItemNumber && sku) ppItemNumber.value = sku;
+    if (ppCustom) ppCustom.value = `Size: ${label}`;
+  }
+
+  select.addEventListener("change", sync);
+  sync();
+
