@@ -106,3 +106,33 @@
   variant.addEventListener("change", sync);
   sync(); // initialize on load
 })();
+
+(() => {
+  const select = document.getElementById("retaVariant");
+  const priceEl = document.getElementById("retaPriceDisplay");
+  const titleEl = document.getElementById("retaTitle");
+
+  if (!select || !priceEl) return;
+
+  const baseName = (titleEl?.textContent || "Product").split("(")[0].trim();
+
+  const fmt = (n) => {
+    const num = Number(n);
+    return Number.isFinite(num) ? `$${num.toFixed(2)}` : `$${n}`;
+  };
+
+  const sync = () => {
+    const opt = select.options[select.selectedIndex];
+    const price = opt.dataset.price;
+    const label = opt.dataset.label || opt.textContent.trim();
+
+    // Update the visible price
+    priceEl.textContent = fmt(price);
+
+    // Optional: update the title to match selection
+    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
+  };
+
+  select.addEventListener("change", sync);
+  sync(); // set correct price on page load
+})();
