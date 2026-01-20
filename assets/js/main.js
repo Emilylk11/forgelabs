@@ -1,35 +1,63 @@
-// Forge Labs — main.js
-(function(){
-  const yearEl = document.getElementById("year");
-  if(yearEl) yearEl.textContent = new Date().getFullYear();
+/* =========================
+   Site JS — clean + reliable
+   ========================= */
 
-  // Simple email capture (demo only). Replace with your provider later.
-  const form = document.getElementById("emailForm");
-  const input = document.getElementById("emailInput");
-  const msg = document.getElementById("emailMsg");
+(() => {
+  "use strict";
 
-  if(form && input && msg){
+  // ---------- Helpers ----------
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+  const toNumber = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? n : null;
+  };
+
+  const money = (v) => {
+    const n = toNumber(v);
+    return n === null ? String(v) : n.toFixed(2);
+  };
+
+  const displayMoney = (v) => {
+    const n = toNumber(v);
+    return n === null ? `$${v}` : `$${n.toFixed(2)}`;
+  };
+
+  // ---------- 1) Footer year ----------
+  function initYear() {
+    const yearEl = $("#year");
+    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  }
+
+  // ---------- 2) Email capture (demo) ----------
+  function initEmailCapture() {
+    const form = $("#emailForm");
+    const input = $("#emailInput");
+    const msg = $("#emailMsg");
+
+    if (!form || !input || !msg) return;
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       const v = (input.value || "").trim();
-      if(!v || !v.includes("@")){
-        msg.textContent = "Drop a valid email pls 😌";
+
+      if (!v || !v.includes("@")) {
+        msg.textContent = "Please enter a valid email.";
         msg.style.color = "var(--brand2)";
         return;
       }
+
       msg.textContent = "You’re on the list. We’ll only email for restocks/launches.";
       msg.style.color = "var(--brand2)";
       input.value = "";
     });
   }
-})();
 
-// Focus cards: mouse-follow glow (+ optional tilt)
-(() => {
-  const cards = document.querySelectorAll("#focus .focus-card");
-  if (!cards.length) return;
+  // ---------- 3) Mouse-follow glow + optional tilt ----------
+  function attachMouseGlow(card, { tilt = false } = {}) {
+    if (!card) return;
 
-  cards.forEach((card) => {
     card.addEventListener("mousemove", (e) => {
       const r = card.getBoundingClientRect();
       const x = ((e.clientX - r.left) / r.width) * 100;
@@ -38,269 +66,132 @@
       card.style.setProperty("--mouse-x", `${x}%`);
       card.style.setProperty("--mouse-y", `${y}%`);
 
-      // Optional tilt (comment out if you don’t want it)
-      const rotateY = ((x - 50) / 50) * 5;
-      const rotateX = ((50 - y) / 50) * 5;
-      card.style.transform = `translateY(-4px) perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      if (tilt) {
+        const rotateY = ((x - 50) / 50) * 5;
+        const rotateX = ((50 - y) / 50) * 5;
+        card.style.transform = `translateY(-4px) perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
     });
 
     card.addEventListener("mouseleave", () => {
       card.style.removeProperty("--mouse-x");
       card.style.removeProperty("--mouse-y");
-      card.style.transform = "";
+      if (tilt) card.style.transform = "";
     });
-  });
-})();
-
-// Optional: subtle mouse-follow glow on the lab card
-(() => {
-  const card = document.querySelector(".lab-card");
-  if (!card) return;
-
-  card.addEventListener("mousemove", (e) => {
-    const r = card.getBoundingClientRect();
-    const x = ((e.clientX - r.left) / r.width) * 100;
-    const y = ((e.clientY - r.top) / r.height) * 100;
-    card.style.setProperty("--mouse-x", `${x}%`);
-    card.style.setProperty("--mouse-y", `${y}%`);
-  });
-
-  card.addEventListener("mouseleave", () => {
-    card.style.removeProperty("--mouse-x");
-    card.style.removeProperty("--mouse-y");
-  });
-})();
-
-(function () {
-  const variant = document.getElementById("retaVariant");
-  const priceEl = document.getElementById("retaPriceDisplay");
-
-  const ppItemName = document.getElementById("ppItemName");
-  const ppItemNumber = document.getElementById("ppItemNumber");
-  const ppAmount = document.getElementById("ppAmount");
-  const ppCustom = document.getElementById("ppCustom");
-
-  if (!variant || !priceEl || !ppItemName || !ppItemNumber || !ppAmount || !ppCustom) return;
-
-  function money(v){
-    const n = Number(v);
-    if (Number.isNaN(n)) return v;
-    return n.toFixed(2);
   }
 
-  function sync() {
-    const opt = variant.options[variant.selectedIndex];
-    const price = opt.dataset.price || "0.00";
-    const sku = opt.dataset.sku || "";
-    const label = opt.dataset.label || opt.textContent.trim();
+  function initCardGlows() {
+    // Focus cards
+    $$("#focus .focus-card").forEach((c) => attachMouseGlow(c, { tilt: true }));
 
-    priceEl.textContent = `$${money(price)}`;
-
-    // Update what PayPal receives
-    ppItemName.value = `Retatrutide – Research Product (${label})`;
-    ppItemNumber.value = sku || "FL-RT";
-    ppAmount.value = money(price);
-    ppCustom.value = `Variant: ${label} • Includes essentials`;
+    // Lab card (glow only)
+    const labCard = $(".lab-card");
+    if (labCard) attachMouseGlow(labCard, { tilt: false });
   }
 
-  variant.addEventListener("change", sync);
-  sync(); // initialize on load
-})();
+  // ---------- 4) Variant -> UI + PayPal sync ----------
+  /**
+   * This supports both patterns:
+   * - Select with id="retaVariant" (legacy)
+   * - Select with class="variant-select" (recommended)
+   *
+   * It will update price text AND PayPal hidden fields, using whichever exist:
+   * - By name: input[name="amount"], input[name="item_number"], input[name="custom"], input[name="item_name"]
+   * - By ids: #ppAmount, #ppItemNumber, #ppCustom, #ppItemName
+   * - By data-pp attrs: [data-pp="amount"], [data-pp="sku"], [data-pp="custom"]
+   */
+  function initVariantPaypalSync() {
+    // Find selects (support both)
+    const selects = [
+      ...$$('select.variant-select'),
+      ...($$("#retaVariant").length ? $$("#retaVariant") : []),
+    ];
 
-(() => {
-  const select = document.getElementById("retaVariant");
-  const priceEl = document.getElementById("retaPriceDisplay");
-  const titleEl = document.getElementById("retaTitle");
+    // If both exist, de-dupe
+    const uniqueSelects = Array.from(new Set(selects));
+    if (!uniqueSelects.length) return;
 
-  if (!select || !priceEl) return;
+    uniqueSelects.forEach((select) => {
+      // Prefer scoping to a product container if present
+      const scope =
+        select.closest(".product-card") ||
+        select.closest(".card") ||
+        select.closest("section") ||
+        document;
 
-  const baseName = (titleEl?.textContent || "Product").split("(")[0].trim();
+      // Price element: prefer exact id, otherwise any .product-price inside same scope
+      const priceEl = $("#retaPriceDisplay", scope) || $(".product-price", scope);
 
-  const fmt = (n) => {
-    const num = Number(n);
-    return Number.isFinite(num) ? `$${num.toFixed(2)}` : `$${n}`;
-  };
+      // Optional title element (only if you have it)
+      const titleEl = $("#retaTitle", scope);
 
-  const sync = () => {
-    const opt = select.options[select.selectedIndex];
-    const price = opt.dataset.price;
-    const label = opt.dataset.label || opt.textContent.trim();
+      // PayPal form (scoped)
+      const form = $("form.paypal-form", scope) || $("form[action*='paypal.com']", scope);
 
-    // Update the visible price
-    priceEl.textContent = fmt(price);
+      // Resolve PayPal inputs (try multiple conventions)
+      const ppAmount =
+        (form && $('input[name="amount"]', form)) ||
+        $("#ppAmount", scope) ||
+        (form && $('[data-pp="amount"]', form));
 
-    // Optional: update the title to match selection
-    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
-  };
+      const ppSku =
+        (form && $('input[name="item_number"]', form)) ||
+        $("#ppItemNumber", scope) ||
+        (form && $('[data-pp="sku"]', form));
 
-  select.addEventListener("change", sync);
-  sync(); // set correct price on page load
-})();
+      const ppCustom =
+        (form && $('input[name="custom"]', form)) ||
+        $("#ppCustom", scope) ||
+        (form && $('[data-pp="custom"]', form));
 
-document.addEventListener("DOMContentLoaded", () => {
-  const select = document.getElementById("retaVariant");
-  const priceEl = document.getElementById("retaPriceDisplay");
-  const titleEl = document.getElementById("retaTitle");
+      const ppItemName =
+        (form && $('input[name="item_name"]', form)) ||
+        $("#ppItemName", scope);
 
-  if (!select) return console.warn("Missing #retaVariant");
-  if (!priceEl) return console.warn("Missing #retaPriceDisplay");
+      // If no priceEl, we can still sync PayPal — but ideally you have one
+      const baseTitle = titleEl ? titleEl.textContent.trim() : null;
 
-  const baseName = titleEl ? titleEl.textContent.trim() : "Product";
+      function sync() {
+        const opt = select.options[select.selectedIndex];
+        if (!opt) return;
 
-  const fmt = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
-  };
+        const price = opt.dataset.price || "0.00";
+        const sku = opt.dataset.sku || "";
+        const label = opt.dataset.label || opt.textContent.trim();
 
-  function sync(){
-    const opt = select.options[select.selectedIndex];
-    const price = opt.dataset.price || "0.00";
-    const label = opt.dataset.label || opt.textContent.trim();
+        // UI updates
+        if (priceEl) priceEl.textContent = displayMoney(price);
 
-    priceEl.textContent = fmt(price);
-    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
-  }
+        // Optional title update (keeps your old behavior, but safer)
+        if (titleEl && baseTitle) {
+          const cleanBase = baseTitle.split("(")[0].trim();
+          titleEl.textContent = `${cleanBase} (${label})`;
+        }
 
-  select.addEventListener("change", sync);
-  sync();
-});
+        // PayPal updates
+        if (ppAmount) ppAmount.value = money(price);
+        if (ppSku && sku) ppSku.value = sku;
+        if (ppCustom) ppCustom.value = `Variant: ${label}`;
 
-document.addEventListener("DOMContentLoaded", () => {
-  const select = document.getElementById("retaVariant");
-  const priceEl = document.getElementById("retaPriceDisplay");
-  const titleEl = document.getElementById("retaTitle");
+        // Optional: show selected variant in PayPal checkout name
+        if (ppItemName) {
+          // If you're selling shoes, rename this to match your product:
+          // e.g., `Shoe Model – Size ${label}`
+          ppItemName.value = `${label}`;
+        }
+      }
 
-  // PayPal hidden fields
-  const ppAmount = document.getElementById("ppAmount");
-  const ppItemNumber = document.getElementById("ppItemNumber"); // optional
-  const ppCustom = document.getElementById("ppCustom");         // optional
-
-  if (!select || !priceEl) return;
-
-  const baseName = titleEl ? titleEl.textContent.trim() : "Product";
-
-  const fmt = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
-  };
-
-  const money = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? n.toFixed(2) : String(v);
-  };
-
-  function sync(){
-    const opt = select.options[select.selectedIndex];
-    const price = opt.dataset.price || "0.00";
-    const label = opt.dataset.label || opt.textContent.trim();
-    const sku = opt.dataset.sku || "";
-
-    // Update UI
-    priceEl.textContent = fmt(price);
-    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
-
-    // Update PayPal
-    if (ppAmount) ppAmount.value = money(price);
-    if (ppItemNumber && sku) ppItemNumber.value = sku;
-    if (ppCustom) ppCustom.value = `Size: ${label}`;
-  }
-
-  select.addEventListener("change", sync);
-  sync();
-
-document.addEventListener("DOMContentLoaded", () => {
-  const select = document.getElementById("retaVariant");
-  const priceEl = document.getElementById("retaPriceDisplay");
-
-  const ppAmount = document.getElementById("ppAmount");
-  const ppItemNumber = document.getElementById("ppItemNumber");
-  const ppCustom = document.getElementById("ppCustom");
-
-  if (!select || !priceEl || !ppAmount || !ppItemNumber || !ppCustom) {
-    console.warn("Missing one or more elements:", {
-      select: !!select,
-      priceEl: !!priceEl,
-      ppAmount: !!ppAmount,
-      ppItemNumber: !!ppItemNumber,
-      ppCustom: !!ppCustom
+      // If your HTML changes selection via other UI later, this still works
+      select.addEventListener("change", sync);
+      sync(); // initialize
     });
-    return;
   }
 
-  const money = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? n.toFixed(2) : String(v);
-  };
-
-  const displayMoney = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
-  };
-
-  function sync() {
-    const opt = select.options[select.selectedIndex];
-    const price = opt.dataset.price || "0.00";
-    const sku = opt.dataset.sku || ppItemNumber.value;
-    const label = opt.dataset.label || opt.textContent.trim();
-
-    // Update visible price
-    priceEl.textContent = displayMoney(price);
-
-    // Update PayPal fields
-    ppAmount.value = money(price);
-    ppItemNumber.value = sku;
-    ppCustom.value = `Variant: ${label}`;
-  }
-
-  select.addEventListener("change", sync);
-  sync();
-});
-
-document.addEventListener("DOMContentLoaded", () => {
-  const select = document.querySelector(".variant-select");
-  const priceEl = document.querySelector(".product-price");
-  const form = document.querySelector("form.paypal-form");
-
-  if (!select || !priceEl || !form) {
-    console.warn("Missing select/price/form", { select: !!select, priceEl: !!priceEl, form: !!form });
-    return;
-  }
-
-  const ppAmount = form.querySelector('[data-pp="amount"]');
-  const ppSku = form.querySelector('[data-pp="sku"]');
-  const ppCustom = form.querySelector('[data-pp="custom"]');
-
-  if (!ppAmount || !ppSku || !ppCustom) {
-    console.warn("Missing data-pp fields", { ppAmount: !!ppAmount, ppSku: !!ppSku, ppCustom: !!ppCustom });
-    return;
-  }
-
-  const money = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? n.toFixed(2) : String(v);
-  };
-  const displayMoney = (v) => {
-    const n = Number(v);
-    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
-  };
-
-  function sync() {
-    const opt = select.options[select.selectedIndex];
-    const price = opt.dataset.price || "0.00";
-    const sku = opt.dataset.sku || ppSku.value;
-    const label = opt.dataset.label || opt.textContent.trim();
-
-    // UI
-    priceEl.textContent = displayMoney(price);
-
-    // PayPal
-    ppAmount.value = money(price);
-    ppSku.value = sku;
-    ppCustom.value = `Variant: ${label}`;
-
-    console.log("Updated PayPal:", { amount: ppAmount.value, sku: ppSku.value, custom: ppCustom.value });
-  }
-
-  select.addEventListener("change", sync);
-  sync();
-});
+  // ---------- Boot ----------
+  document.addEventListener("DOMContentLoaded", () => {
+    initYear();
+    initEmailCapture();
+    initCardGlows();
+    initVariantPaypalSync();
+  });
+})();
