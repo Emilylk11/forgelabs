@@ -136,3 +136,31 @@
   select.addEventListener("change", sync);
   sync(); // set correct price on page load
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.getElementById("retaVariant");
+  const priceEl = document.getElementById("retaPriceDisplay");
+  const titleEl = document.getElementById("retaTitle");
+
+  if (!select) return console.warn("Missing #retaVariant");
+  if (!priceEl) return console.warn("Missing #retaPriceDisplay");
+
+  const baseName = titleEl ? titleEl.textContent.trim() : "Product";
+
+  const fmt = (v) => {
+    const n = Number(v);
+    return Number.isFinite(n) ? `$${n.toFixed(2)}` : `$${v}`;
+  };
+
+  function sync(){
+    const opt = select.options[select.selectedIndex];
+    const price = opt.dataset.price || "0.00";
+    const label = opt.dataset.label || opt.textContent.trim();
+
+    priceEl.textContent = fmt(price);
+    if (titleEl) titleEl.textContent = `${baseName} (${label})`;
+  }
+
+  select.addEventListener("change", sync);
+  sync();
+});
