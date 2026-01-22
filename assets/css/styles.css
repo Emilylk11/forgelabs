@@ -1344,3 +1344,111 @@ input::placeholder{color: rgba(159,176,195,.7)}
 body{
   padding-top: 68px; /* adjust to your header height */
 }
+/* ===========================
+   AGE + RESEARCH USE GATE
+   =========================== */
+
+.gate{
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: none;               /* toggled by JS */
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0,0,0,.72);
+  backdrop-filter: blur(10px);
+}
+
+.gate.is-open{ display: flex; }
+
+body.gate-open{
+  overflow: hidden;
+}
+
+.gate__card{
+  width: min(720px, 100%);
+  border-radius: 22px;
+  border: 1px solid rgba(255,255,255,.12);
+  background:
+    radial-gradient(800px 300px at 20% 0%, rgba(124,92,255,.18), transparent 60%),
+    radial-gradient(700px 260px at 90% 20%, rgba(54,211,153,.12), transparent 60%),
+    rgba(15,22,32,.96);
+  box-shadow: 0 22px 70px rgba(0,0,0,.55);
+  padding: 22px;
+  position: relative;
+}
+
+.gate__badge{
+  display: inline-flex;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(226,232,240,.8);
+  font-size: 12px;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.gate__title{
+  margin: 0 0 10px;
+  font-size: clamp(22px, 2.6vw, 30px);
+  letter-spacing: -0.02em;
+}
+
+.gate__desc{
+  margin: 0 0 16px;
+  color: rgba(226,232,240,.78);
+  line-height: 1.55;
+}
+
+.gate__checks{
+  display: grid;
+  gap: 12px;
+  margin: 14px 0 18px;
+}
+
+.gate__check{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 12px 12px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(255,255,255,.04);
+  color: rgba(226,232,240,.88);
+  line-height: 1.45;
+}
+
+.gate__check input{
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand2);
+  flex: 0 0 auto;
+}
+
+.gate__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.gate__actions .btn{
+  flex: 1 1 180px;
+}
+
+.gate__error{
+  margin-top: 10px;
+  color: rgba(255, 120, 120, .95);
+  min-height: 16px;
+}
+
+.gate__fineprint{
+  margin: 12px 0 0;
+  color: rgba(226,232,240,.55);
+  line-height: 1.45;
+}
