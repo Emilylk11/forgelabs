@@ -266,3 +266,57 @@
     }
   });
 })();
+
+function initVariantPillsPaypalSync() {
+  const groups = document.querySelectorAll(".variant-pills[data-variants]");
+  if (!groups.length) return;
+
+  groups.forEach((group) => {
+    const scope = group.closest(".product-card") || document;
+
+    const priceEl = scope.querySelector(".product-price");
+    const form = scope.querySelector("form.paypal-form") || scope.querySelector("form[action*='paypal.com']");
+
+    const ppAmount = form && (form.querySelector('input[name="amount"]') || form.querySelector('[data-pp="amount"]'));
+    const ppSku    = form && (form.querySelector('input[name="item_number"]') || form.querySelector('[data-pp="sku"]'));
+    const ppCustom = form && (form.querySelector('input[name="custom"]') || form.querySelector('[data-pp="custom"]'));
+
+    const hiddenValue = scope.querySelector("[data-variant-value]");
+
+    const pills = Array.from(group.querySelectorAll(".variant-pill"));
+    if (!pills.length) return;
+
+    const money = (v) => String(v || "0").replace(/[^\d.]/g, "");
+    const displayMoney = (v) => {
+      const n = Number(money(v) || 0);
+      return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+    };
+
+    const setActive = (pill) => {
+      pills.forEach((p) => p.classList.toggle("is-active", p === pill));
+
+      const price = pill.dataset.price || "0.00";
+      const sku = pill.dataset.sku || "";
+      const label = pill.dataset.label || pill.textContent.trim();
+
+      if (priceEl) priceEl.textContent = displayMoney(price);
+      if (ppAmount) ppAmount.value = money(price);
+      if (ppSku && sku) ppSku.value = sku;
+      if (ppCustom) ppCustom.value = `Variant: ${label}`;
+      if (hiddenValue) hiddenValue.value = label;
+    };
+
+    pills.forEach((pill) => pill.addEventListener("click", () => setActive(pill)));
+
+    // initialize (use existing active pill or first)
+    setActive(pills.find((p) => p.classList.contains("is-active")) || pills[0]);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initYear();
+  initEmailCapture();
+  initCardGlows();
+  initVariantPaypalSync();        // keep (select fallback)
+  initVariantPillsPaypalSync();   // NEW (pill UI)
+});
