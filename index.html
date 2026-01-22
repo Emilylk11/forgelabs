@@ -171,7 +171,7 @@ Providing peptides intended exclusively for in vitro and laboratory research app
                  <h3 class="product-title" id="retaTitle">Retatrutide</h3>
                   <p class="muted small">Research use only • Laboratory supply</p>
                 </div>
-                <div class="product-price" id="retaPriceDisplay">$120.00</div>
+                <div class="product-price" id="retaPriceDisplay">$70.00</div>
               </div>
 
               <p class="product-desc">
@@ -180,7 +180,6 @@ Providing peptides intended exclusively for in vitro and laboratory research app
 
               <ul class="chips" aria-label="Highlights">
                 <li class="chip">Includes essentials</li>
-                <li class="chip">Discreet packaging</li>
                 <li class="chip">Fast processing</li>
               </ul>
 
@@ -211,9 +210,9 @@ Providing peptides intended exclusively for in vitro and laboratory research app
                 <input type="hidden" name="item_name" value="Retatrutide – Research Product (Includes Essentials)">
                 <input type="hidden" name="item_number" value="FL-RT-A" data-pp="sku">
                 <input type="hidden" name="custom" value="Size: 10mg" data-pp="custom">
-                <input type="hidden" name="amount" value="120.00" data-pp="amount">
+                <input type="hidden" name="amount" value="70.00" data-pp="amount">
 
-                <input type="hidden" name="shipping" value="4.95">
+                <input type="hidden" name="shipping" value="14.95">
                 <input type="hidden" name="quantity" value="1">
 
                 <input type="hidden" name="no_note" value="1">
@@ -225,57 +224,264 @@ Providing peptides intended exclusively for in vitro and laboratory research app
             </div>
           </article>
 
-          <!-- Coming soon products -->
-          <article class="product-card">
-            <div class="product-thumb alt">
-              <span class="tag ghost">Coming soon</span>
-              <div class="thumb-art">MT-2</div>
-            </div>
-            <div class="product-body">
-              <div class="product-top">
-                <div>
-                  <h3>MT-2 (Coming Soon)</h3>
-                  <p class="muted small">Includes essentials • Launching soon</p>
-                </div>
-                <div class="price muted">$—</div>
-              </div>
-              <p class="product-desc muted">
-                Listed for early visibility. Email or message us below for launch access.
-              </p>
-              <ul class="chips" aria-label="Highlights">
-                <li class="chip">Includes essentials</li>
-                <li class="chip">Transparent policies</li>
-                <li class="chip">Discreet packaging</li>
-              </ul>
-              <button class="btn ghost full" disabled>Coming Soon</button>
-            </div>
-          </article>
+ <!-- Live product: Semaglutide -->
+<article class="product-card">
+  <div class="product-thumb">
+    <span class="tag">Live</span>
+    <img
+      src="./assets/images/semaglutideproduct.png"
+      alt="Semaglutide vial"
+      class="thumb-img"
+    />
+  </div>
 
-          <article class="product-card">
-            <div class="product-thumb alt2">
-              <span class="tag ghost">Coming soon</span>
-              <div class="thumb-art">GHK-CU</div>
-            </div>
-            <div class="product-body">
-              <div class="product-top">
-                <div>
-                  <h3>GHK-CU (Coming Soon)</h3>
-                  <p class="muted small">Includes essentials • Launching soon</p>
-                </div>
-                <div class="price muted">$—</div>
-              </div>
-              <p class="product-desc muted">
-                Listed for early visibility. Email or message us below for launch access.
-              </p>
-              <ul class="chips" aria-label="Highlights">
-                <li class="chip">Includes essentials</li>
-                <li class="chip">Fast processing</li>
-                <li class="chip">Human support</li>
-              </ul>
-              <button class="btn ghost full" disabled>Coming Soon</button>
-            </div>
-          </article>
-        </div>
+  <div class="product-body">
+    <div class="product-top">
+      <div>
+        <h3 class="product-title" id="semaTitle">Semaglutide</h3>
+        <p class="muted small">Research use only • Laboratory supply</p>
+      </div>
+      <div class="product-price" id="semaPriceDisplay">$90.00</div>
+    </div>
+
+    <p class="product-desc">
+      This product is supplied strictly for research and laboratory use only. It is intended for qualified research personnel conducting controlled laboratory studies.
+    </p>
+
+    <ul class="chips" aria-label="Highlights">
+      <li class="chip">Includes essentials</li>
+      <li class="chip">Fast processing</li>
+    </ul>
+
+    <!-- Variant selector -->
+    <div class="variant-row" style="margin: 12px 0 14px;">
+      <label for="semaVariant" class="muted small" style="display:block; margin-bottom:6px;">
+        Choose size
+      </label>
+
+      <select id="semaVariant" class="variant-select" style="width:100%; padding:12px 14px; border-radius:12px;">
+        <option value="optA" data-price="90.00" data-sku="FL-SEMA-A" data-label="5mg">5mg</option>
+        <option value="optB" data-price="145.00" data-sku="FL-SEMA-B" data-label="10mg">10mg</option>
+        <option value="optC" data-price="210.00" data-sku="FL-SEMA-C" data-label="15mg">15mg</option>
+      </select>
+    </div>
+
+    <!-- PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="kuntzeemily@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+
+      <input type="hidden" name="item_name" value="Semaglutide – Research Product (Includes Essentials)">
+      <input type="hidden" name="item_number" value="FL-SEMA-A" data-pp="sku">
+      <input type="hidden" name="custom" value="Size: 5mg" data-pp="custom">
+      <input type="hidden" name="amount" value="90.00" data-pp="amount">
+
+      <input type="hidden" name="shipping" value="14.95">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="no_note" value="1">
+      <input type="hidden" name="bn" value="PP-BuyNowBF">
+
+      <button type="submit" class="btn primary full">Buy Now</button>
+      <p class="fineprint">Shipping fees may vary at checkout.</p>
+    </form>
+  </div>
+</article>
+
+
+<!-- Live product: Tirzepatide -->
+<article class="product-card">
+  <div class="product-thumb">
+    <span class="tag">Live</span>
+    <img
+      src="./assets/images/tirzepatideproduct.png"
+      alt="Tirzepatide vial"
+      class="thumb-img"
+    />
+  </div>
+
+  <div class="product-body">
+    <div class="product-top">
+      <div>
+        <h3 class="product-title" id="tirzTitle">Tirzepatide</h3>
+        <p class="muted small">Research use only • Laboratory supply</p>
+      </div>
+      <div class="product-price" id="tirzPriceDisplay">$110.00</div>
+    </div>
+
+    <p class="product-desc">
+      This product is supplied strictly for research and laboratory use only. It is intended for qualified research personnel conducting controlled laboratory studies.
+    </p>
+
+    <ul class="chips" aria-label="Highlights">
+      <li class="chip">Includes essentials</li>
+      <li class="chip">Fast processing</li>
+    </ul>
+
+    <!-- Variant selector -->
+    <div class="variant-row" style="margin: 12px 0 14px;">
+      <label for="tirzVariant" class="muted small" style="display:block; margin-bottom:6px;">
+        Choose size
+      </label>
+
+      <select id="tirzVariant" class="variant-select" style="width:100%; padding:12px 14px; border-radius:12px;">
+        <option value="optA" data-price="110.00" data-sku="FL-TIRZ-A" data-label="10mg">10mg</option>
+        <option value="optB" data-price="185.00" data-sku="FL-TIRZ-B" data-label="20mg">20mg</option>
+        <option value="optC" data-price="260.00" data-sku="FL-TIRZ-C" data-label="30mg">30mg</option>
+      </select>
+    </div>
+
+    <!-- PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="kuntzeemily@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+
+      <input type="hidden" name="item_name" value="Tirzepatide – Research Product (Includes Essentials)">
+      <input type="hidden" name="item_number" value="FL-TIRZ-A" data-pp="sku">
+      <input type="hidden" name="custom" value="Size: 10mg" data-pp="custom">
+      <input type="hidden" name="amount" value="110.00" data-pp="amount">
+
+      <input type="hidden" name="shipping" value="14.95">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="no_note" value="1">
+      <input type="hidden" name="bn" value="PP-BuyNowBF">
+
+      <button type="submit" class="btn primary full">Buy Now</button>
+      <p class="fineprint">Shipping fees may vary at checkout.</p>
+    </form>
+  </div>
+</article>
+
+
+<!-- Live product: GHK-Cu -->
+<article class="product-card">
+  <div class="product-thumb">
+    <span class="tag">Live</span>
+    <img
+      src="./assets/images/ghkproduct.png"
+      alt="GHK-Cu vial"
+      class="thumb-img"
+    />
+  </div>
+
+  <div class="product-body">
+    <div class="product-top">
+      <div>
+        <h3 class="product-title" id="ghkTitle">GHK-Cu</h3>
+        <p class="muted small">Research use only • Laboratory supply</p>
+      </div>
+      <div class="product-price" id="ghkPriceDisplay">$65.00</div>
+    </div>
+
+    <p class="product-desc">
+      This product is supplied strictly for research and laboratory use only. It is intended for qualified research personnel conducting controlled laboratory studies.
+    </p>
+
+    <ul class="chips" aria-label="Highlights">
+      <li class="chip">Includes essentials</li>
+      <li class="chip">Fast processing</li>
+    </ul>
+
+    <!-- Variant selector -->
+    <div class="variant-row" style="margin: 12px 0 14px;">
+      <label for="ghkVariant" class="muted small" style="display:block; margin-bottom:6px;">
+        Choose size
+      </label>
+
+      <select id="ghkVariant" class="variant-select" style="width:100%; padding:12px 14px; border-radius:12px;">
+        <option value="optA" data-price="65.00" data-sku="FL-GHK-A" data-label="10mg">10mg</option>
+        <option value="optB" data-price="95.00" data-sku="FL-GHK-B" data-label="20mg">20mg</option>
+        <option value="optC" data-price="125.00" data-sku="FL-GHK-C" data-label="30mg">30mg</option>
+      </select>
+    </div>
+
+    <!-- PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="kuntzeemily@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+
+      <input type="hidden" name="item_name" value="GHK-Cu – Research Product (Includes Essentials)">
+      <input type="hidden" name="item_number" value="FL-GHK-A" data-pp="sku">
+      <input type="hidden" name="custom" value="Size: 10mg" data-pp="custom">
+      <input type="hidden" name="amount" value="65.00" data-pp="amount">
+
+      <input type="hidden" name="shipping" value="14.95">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="no_note" value="1">
+      <input type="hidden" name="bn" value="PP-BuyNowBF">
+
+      <button type="submit" class="btn primary full">Buy Now</button>
+      <p class="fineprint">Shipping fees may vary at checkout.</p>
+    </form>
+  </div>
+</article>
+
+
+<!-- Live product: MT-2 -->
+<article class="product-card">
+  <div class="product-thumb">
+    <span class="tag">Live</span>
+    <img
+      src="./assets/images/mt2product.png"
+      alt="MT-2 vial"
+      class="thumb-img"
+    />
+  </div>
+
+  <div class="product-body">
+    <div class="product-top">
+      <div>
+        <h3 class="product-title" id="mt2Title">MT-2</h3>
+        <p class="muted small">Research use only • Laboratory supply</p>
+      </div>
+      <div class="product-price" id="mt2PriceDisplay">$55.00</div>
+    </div>
+
+    <p class="product-desc">
+      This product is supplied strictly for research and laboratory use only. It is intended for qualified research personnel conducting controlled laboratory studies.
+    </p>
+
+    <ul class="chips" aria-label="Highlights">
+      <li class="chip">Includes essentials</li>
+      <li class="chip">Fast processing</li>
+    </ul>
+
+    <!-- Variant selector -->
+    <div class="variant-row" style="margin: 12px 0 14px;">
+      <label for="mt2Variant" class="muted small" style="display:block; margin-bottom:6px;">
+        Choose size
+      </label>
+
+      <select id="mt2Variant" class="variant-select" style="width:100%; padding:12px 14px; border-radius:12px;">
+        <option value="optA" data-price="55.00" data-sku="FL-MT2-A" data-label="10mg">10mg</option>
+        <option value="optB" data-price="80.00" data-sku="FL-MT2-B" data-label="20mg">20mg</option>
+        <option value="optC" data-price="105.00" data-sku="FL-MT2-C" data-label="30mg">30mg</option>
+      </select>
+    </div>
+
+    <!-- PayPal -->
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" class="paypal-form">
+      <input type="hidden" name="cmd" value="_xclick">
+      <input type="hidden" name="business" value="kuntzeemily@gmail.com">
+      <input type="hidden" name="currency_code" value="USD">
+
+      <input type="hidden" name="item_name" value="MT-2 – Research Product (Includes Essentials)">
+      <input type="hidden" name="item_number" value="FL-MT2-A" data-pp="sku">
+      <input type="hidden" name="custom" value="Size: 10mg" data-pp="custom">
+      <input type="hidden" name="amount" value="55.00" data-pp="amount">
+
+      <input type="hidden" name="shipping" value="14.95">
+      <input type="hidden" name="quantity" value="1">
+      <input type="hidden" name="no_note" value="1">
+      <input type="hidden" name="bn" value="PP-BuyNowBF">
+
+      <button type="submit" class="btn primary full">Buy Now</button>
+      <p class="fineprint">Shipping fees may vary at checkout.</p>
+    </form>
+  </div>
+</article>
 
       </div>
     </section>
