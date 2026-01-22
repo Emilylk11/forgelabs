@@ -10,6 +10,44 @@
   <meta name="trustpilot-one-time-domain-verification-id" content="32e775dc-7cac-47c9-81ff-4d67ed6fcf06"/>
 </head>
 <body>
+  <!-- Age + Research Use Gate (shows on first visit) -->
+<div id="gate" class="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle" aria-describedby="gateDesc">
+  <div class="gate__card" role="document">
+    <div class="gate__badge">Access Confirmation</div>
+    <h2 id="gateTitle" class="gate__title">Confirm before entering</h2>
+    <p id="gateDesc" class="gate__desc">
+      This website provides products intended strictly for laboratory research use only.
+      Please confirm the statements below to continue.
+    </p>
+
+    <div class="gate__checks">
+      <label class="gate__check">
+        <input type="checkbox" id="gateAge" />
+        <span>I am at least <strong>21 years old</strong>.</span>
+      </label>
+
+      <label class="gate__check">
+        <input type="checkbox" id="gateResearch" />
+        <span>
+          I understand all products are for <strong>research/laboratory use only</strong> and are
+          <strong>not for human or animal consumption</strong>.
+        </span>
+      </label>
+    </div>
+
+    <div class="gate__actions">
+      <button class="btn primary" id="gateAccept" type="button">I Understand — Enter</button>
+      <button class="btn ghost" id="gateLeave" type="button">Leave</button>
+    </div>
+
+    <div class="gate__error small" id="gateError" aria-live="polite"></div>
+
+    <p class="gate__fineprint small">
+      By continuing, you confirm the above. (This confirmation is stored in your browser.)
+    </p>
+  </div>
+</div>
+
   <!-- Sticky Nav -->
   <header class="site-header" id="top">
     <div class="container nav">
