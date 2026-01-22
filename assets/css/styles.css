@@ -1452,3 +1452,44 @@ body.gate-open{
   color: rgba(226,232,240,.55);
   line-height: 1.45;
 }
+
+/* Variant pills (replaces dropdown) */
+.variant-row { margin: 12px 0 14px; }
+
+.variant-pills{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.variant-pill{
+  appearance: none;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: rgba(226,232,240,.86);
+  padding: 10px 12px;
+  border-radius: 999px;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform .08s ease, background .2s ease, border-color .2s ease;
+}
+
+.variant-pill:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.09);
+}
+
+.variant-pill.is-active{
+  border-color: rgba(124,92,255,.6);
+  background: rgba(124,92,255,.18);
+  color: rgba(255,255,255,.95);
+}
+
+.variant-pill:focus-visible{
+  outline: 2px solid rgba(124,92,255,.8);
+  outline-offset: 2px;
+}
+
+/* optional tiny hidden input if you want it */
+.variant-hidden{ display:none; }
