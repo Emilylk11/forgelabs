@@ -195,3 +195,74 @@
     initVariantPaypalSync();
   });
 })();
+
+// ===========================
+// Age + Research Use Gate
+// ===========================
+(function gateInit(){
+  const KEY = "forge_gate_v1"; // bump version if you ever want to re-show it
+
+  const gate = document.getElementById("gate");
+  if(!gate) return;
+
+  const age = document.getElementById("gateAge");
+  const research = document.getElementById("gateResearch");
+  const accept = document.getElementById("gateAccept");
+  const leave = document.getElementById("gateLeave");
+  const err = document.getElementById("gateError");
+
+  const openGate = () => {
+    gate.classList.add("is-open");
+    document.body.classList.add("gate-open");
+    // put focus on first checkbox for accessibility
+    setTimeout(() => age && age.focus(), 0);
+  };
+
+  const closeGate = () => {
+    gate.classList.remove("is-open");
+    document.body.classList.remove("gate-open");
+  };
+
+  // If already accepted, don't show
+  try{
+    if(localStorage.getItem(KEY) === "1"){
+      closeGate();
+      return;
+    }
+  }catch(e){
+    // If storage is blocked, still show gate (best effort)
+  }
+
+  openGate();
+
+  const validate = () => {
+    const ok = !!(age && age.checked && research && research.checked);
+    if(err) err.textContent = ok ? "" : "Please confirm both checkboxes to continue.";
+    return ok;
+  };
+
+  if(age) age.addEventListener("change", validate);
+  if(research) research.addEventListener("change", validate);
+
+  if(accept){
+    accept.addEventListener("click", () => {
+      if(!validate()) return;
+      try{ localStorage.setItem(KEY, "1"); }catch(e){}
+      closeGate();
+    });
+  }
+
+  if(leave){
+    leave.addEventListener("click", () => {
+      // send them away (you can change this to any URL you want)
+      window.location.href = "about:blank";
+    });
+  }
+
+  // Optional: prevent closing with ESC (keeps it a true gate)
+  document.addEventListener("keydown", (e) => {
+    if(gate.classList.contains("is-open") && e.key === "Escape"){
+      e.preventDefault();
+    }
+  });
+})();
