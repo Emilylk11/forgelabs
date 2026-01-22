@@ -313,10 +313,81 @@ function initVariantPillsPaypalSync() {
   });
 }
 
+function initVariantSyncUniversal() {
+  // Helper: money formatting
+  const money = (v) => String(v || "0").replace(/[^\d.]/g, "");
+  const displayMoney = (v) => {
+    const n = Number(money(v) || 0);
+    return n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+  };
+
+  const updateScope = (scope, { price, sku, label }) => {
+    const priceEl = scope.querySelector(".product-price");
+    const form = scope.querySelector("form.paypal-form") || scope.querySelector("form[action*='paypal.com']");
+
+    const ppAmount = form && (form.querySelector('input[name="amount"]') || form.querySelector('[data-pp="amount"]'));
+    const ppSku    = form && (form.querySelector('input[name="item_number"]') || form.querySelector('[data-pp="sku"]'));
+    const ppCustom = form && (form.querySelector('input[name="custom"]') || form.querySelector('[data-pp="custom"]'));
+
+    const hiddenValue = scope.querySelector("[data-variant-value]");
+
+    if (priceEl) priceEl.textContent = displayMoney(price);
+    if (ppAmount) ppAmount.value = money(price);
+    if (ppSku && sku) ppSku.value = sku;
+    if (ppCustom) ppCustom.value = `Size: ${label}`; // matches your HTML wording
+    if (hiddenValue) hiddenValue.value = label;
+  };
+
+  // -------------------------
+  // 1) PILL GROUPS
+  // -------------------------
+  const pillGroups = document.querySelectorAll(".variant-pills[data-variants]");
+  pillGroups.forEach((group) => {
+    const scope = group.closest(".product-card") || document;
+    const pills = Array.from(group.querySelectorAll(".variant-pill"));
+    if (!pills.length) return;
+
+    const setActive = (pill) => {
+      pills.forEach((p) => p.classList.toggle("is-active", p === pill));
+      updateScope(scope, {
+        price: pill.dataset.price || "0.00",
+        sku: pill.dataset.sku || "",
+        label: pill.dataset.label || pill.textContent.trim()
+      });
+    };
+
+    pills.forEach((pill) => pill.addEventListener("click", () => setActive(pill)));
+    setActive(pills.find((p) => p.classList.contains("is-active")) || pills[0]);
+  });
+
+  // -------------------------
+  // 2) DROPDOWNS
+  // -------------------------
+  const selects = document.querySelectorAll("select.variant-select");
+  selects.forEach((select) => {
+    const scope = select.closest(".product-card") || document;
+
+    const applySelected = () => {
+      const opt = select.options[select.selectedIndex];
+      if (!opt) return;
+
+      updateScope(scope, {
+        price: opt.dataset.price || "0.00",
+        sku: opt.dataset.sku || "",
+        label: opt.dataset.label || opt.textContent.trim()
+      });
+    };
+
+    select.addEventListener("change", applySelected);
+    applySelected(); // init
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initYear();
   initEmailCapture();
   initCardGlows();
-  initVariantPaypalSync();        // keep (select fallback)
-  initVariantPillsPaypalSync();   // NEW (pill UI)
+
+  initVariantSyncUniversal(); // ✅ handles pills + dropdowns
 });
+
