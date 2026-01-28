@@ -1505,7 +1505,6 @@ body.gate-open{
   display: flex;
   justify-content: center;
   align-items: center; /* 👈 ADD THIS */
-  padding: 64px 16px;
   background: #0b0f1a;
 }
 
