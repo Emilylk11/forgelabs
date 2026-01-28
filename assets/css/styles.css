@@ -1495,64 +1495,67 @@ body.gate-open{
 .variant-hidden{ display:none; }
 
 
-    /* Offset for sticky header */
-    .page-offset {
-      padding-top: 120px;
-    }
+ /* Scope EVERYTHING to this page only */
+  .page-thank-you main {
+    padding-top: 120px; /* offset for sticky header */
+  }
 
-    .thank-you-wrapper {
-      display: flex;
-      justify-content: center;
-      padding: 60px 16px 100px;
-      background: #f7f8fa;
-    }
+  .page-thank-you .thank-you-wrapper {
+    min-height: calc(100vh - 120px);
+    display: flex;
+    justify-content: center;
+    padding: 64px 16px 96px;
+    background: #0b0f1a; /* match your site dark bg */
+  }
 
-    .thank-you-card {
-      background: #fff;
-      max-width: 640px;
-      width: 100%;
-      padding: 40px 32px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      text-align: center;
-    }
+  .page-thank-you .thank-you-card {
+    max-width: 820px;
+    width: 100%;
+    padding: 32px 28px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(10px);
+  }
 
-    .thank-you-card h1 {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 12px;
-    }
+  .page-thank-you .thank-you-card h1 {
+    margin: 0 0 10px;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
 
-    .thank-you-card p {
-      font-size: 16px;
-      line-height: 1.6;
-      color: #444;
-      margin: 12px 0;
-    }
+  .page-thank-you .thank-you-card p,
+  .page-thank-you .thank-you-card li {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 18px;
+    line-height: 1.65;
+    margin: 10px 0;
+  }
 
-    .divider {
-      height: 1px;
-      background: #e6e8eb;
-      margin: 24px 0;
-    }
+  .page-thank-you .thank-you-card .section-title {
+    margin-top: 18px;
+    font-weight: 800;
+    color: #fff;
+    font-size: 18px;
+  }
 
-    .shipping-details {
-      text-align: left;
-      font-size: 15px;
-    }
+  .page-thank-you .thank-you-list {
+    margin: 14px 0 0;
+    padding-left: 18px;
+  }
 
-    .support {
-      margin-top: 24px;
-      font-size: 14px;
-      color: #666;
-    }
+  .page-thank-you .support {
+    margin-top: 18px;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 16px;
+  }
 
-    .support a {
-      color: #111;
-      font-weight: 600;
-      text-decoration: none;
-    }
-
-    .support a:hover {
-      text-decoration: underline;
-    }
+  .page-thank-you .support a {
+    color: #fff;
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
